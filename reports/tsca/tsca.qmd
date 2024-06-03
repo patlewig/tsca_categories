@@ -477,24 +477,38 @@ clusters_c_df = pd.read_csv(interim_dir+'quinolines_derivs.csv')
 
 ```{python}
 
-#| label: fig-pyridine-clust
-#| fig-cap: Members of the ('Pyridines and derivatives', 1.0') terminal category that fall into cluster 1 vs. cluster 2 of the structural alert profile
-#| 
+
 mols = {k:v for k,v in zip(df['dtxsid'], df['SMILES'])}
 clusters_df['SMILES'] = clusters_df['dtxsid'].apply(lambda x: mols[x])
 from rdkit.Chem.Draw import MolsToGridImage
 from rdkit import Chem
 from rdkit.Chem import Draw
+from PIL import Image
+import io
 
-mols_cluster_1 = [Chem.MolFromSmiles(e) for e in clusters_df[clusters_df['cluster_d'] == 1]['SMILES']]
-mols_cluster_2 = [Chem.MolFromSmiles(e) for e in clusters_df[clusters_df['cluster_d'] == 2]['SMILES']]
+#mols_cluster_1 = [Chem.MolFromSmiles(e) for e in clusters_df###[clusters_df['cluster_d'] == 1]['SMILES']]
+#mols_cluster_2 = [Chem.MolFromSmiles(e) for e in clusters_df[clusters_df['cluster_d'] == 2]['SMILES']]
 
-img_cluster_1 = Draw.MolsToGridImage(mols_cluster_1, molsPerRow=4, subImgSize=(200, 200))
+#img_cluster_1 = Draw.MolsToGridImage(mols_cluster_1) 
+#img_cluster_2 = Draw.MolsToGridImage(mols_cluster_2) 
+#png1 = img_cluster_1.data
+#png2 = img_cluster_2.data
 
-img_cluster_2 = Draw.MolsToGridImage(mols_cluster_2, molsPerRow=4, subImgSize=(200, 200))
-
+#with open('img_cluster_1.png','wb+') as outf:
+  #  outf.write(png1)
+#with open('img_cluster_2.png','wb+') as outf:
+ #   outf.write(png2)
+   
 
 ```
+
+::: {#fig-pyridine-clust layout-ncol="2"}
+![Cluster 1](img_cluster_1.png){#fig-pc1 width="50%"}
+
+![Cluster 2](img_cluster_2.png){#fig-pc2 width="50%"}
+
+Members of the ('Pyridines and derivatives', 1.0') terminal category that fall into cluster 1 vs. cluster 2 of the structural alert profile. 
+:::
 
 
 The alert profiles may assist with refining understanding of predicted toxicity within these structure-based categories, which are constructed pragmatically but may group substances that have small but important structural differences that lead to different predictions. For instance, in (‘Pyridines and derivatives’, 1.0), there is a difference in prediction between substances that contain a CCl3 group versus other chemicals in the terminal category which are still highly chlorinated bit lack this particular group (@fig-pyridine-clust). Further, the alert profiles within the terminal categories may provide useful insights on the types of targets or toxicities to evaluate in the *in vitro* NAM assays.
