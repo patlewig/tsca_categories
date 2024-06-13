@@ -60,7 +60,7 @@ jupyter: py39
 
 # Introduction
 
-Under the Toxic Substances Control Act (TSCA), as amended by the Frank R. Lautenberg Chemical Safety for the 21st Century Act [@usepa_2016], the US Environmental Protection Agency (EPA) evaluates potential risks from new and existing chemicals and acts to address any unreasonable risks that chemicals may have on human health and the environment. The non-confidential TSCA Inventory contains 86,741 chemicals, of which 42,293 are active (at the time of writing February 2024) in commerce which renders the use of traditional approaches too resource and time intensive to generate relevant data to facilitate assessment. In 2022, EPA launched a new effort under TSCA to modernise the process and bring innovative science to the review of new chemicals before they are permitted to enter the marketplace. This included a multi-year collaborative research programme (known as the New Chemical Collaborative Research Program (NCCRP)) to refine existing approaches as well as develop and implement New Approach Methods (NAMs) to ensure the best available science could be applied in new chemical evaluations. Several key areas were proposed to: 1) refine read-across approaches; 2) digitise and consolidate existing information on chemicals and combine them with publicly available sources to broaden coverage and accessibility; 3) update Quantitative Structure Activity Relationship (QSAR) models for physical and (eco)toxicological properties; 4) explore ways of integrating and applying NAMs in new chemical assessments thereby reducing the reliance on animal testing and 5) develop decision support tools to integrate various data streams to facilitate new chemical risk assessment [@usepa_2022]. In terms of actualising how *in vitro* NAMs would be integrated and applied, a selection of different technologies were identified for evaluation as part of a proof-of-concept case study. These comprise a combined battery of broad profiling and targeted NAMs as described in more detail in the 2019 Computational Toxicology BluePrint [@thomas_next_2019]. Broad profiling NAMs encompass high-throughput phenotypic profiling (HTPP) [@nyffeler_bioactivity_2020] technologies which measure a large number of cellular morphological features that can be used to inform point of departure, molecular initiating events and bioactivity. Targeted NAMs include high-throughput transcriptomic (HTTr) [@harrill_considerations_2019] and high-throughput screening (HTS) assays (e.g. such as ToxCast [@judson_2010; @richard_toxcast_2016]). Collectively, these technologies have the potential to fill gaps related to molecular initiating events, including targets such as nuclear receptor targets, G-protein coupled receptors, transporters, ion channels, kinases and other enzymes, as well as oxidative and cell stress. They can also be tailored to different routes of exposure or address specific toxicities that are more closely aligned with traditional adverse outcomes such as developmental toxicity. In addition to technologies to characterise biological activity, High Throughput Toxicokinetic (HTTK) approaches [@wetmore2015] to assess dosimetry and kinetics also form an important component of informing *in vivo* point of departure estimations based on *in vitro* bioactive concentrations.
+Under the Toxic Substances Control Act (TSCA), as amended by the Frank R. Lautenberg Chemical Safety for the 21st Century Act [@usepa_2016], the US Environmental Protection Agency (EPA) evaluates potential risks from new and existing chemicals and acts to address any unreasonable risks that chemicals may have on human health and the environment. The non-confidential TSCA Inventory contains 86,741 chemicals, of which 42,293 are active (at the time of writing February 2024) in commerce which renders the use of traditional approaches too resource and time intensive to generate relevant data to facilitate assessment. In 2022, EPA launched a new effort under TSCA to modernise the process and bring innovative science to the review of new chemicals before they are permitted to enter the marketplace. This included a multi-year collaborative research programme (known as the New Chemical Collaborative Research Program (NCCRP)) to refine existing approaches as well as develop and implement New Approach Methods (NAMs) to ensure the best available science could be applied in new chemical evaluations. Several key areas were proposed to: 1) refine read-across approaches; 2) digitise and consolidate existing information on chemicals and combine them with publicly available sources to broaden coverage and accessibility; 3) update Quantitative Structure Activity Relationship (QSAR) models for physical and (eco)toxicological properties; 4) explore ways of integrating and applying NAMs in new chemical assessments thereby reducing the reliance on animal testing and 5) develop decision support tools to integrate various data streams to facilitate new chemical risk assessment [@usepa_2022]. In terms of actualising how *in vitro* NAMs would be integrated and applied, a selection of different technologies were identified for evaluation as part of a proof-of-concept case study. These comprise a combined battery of broad profiling and targeted NAMs such as those described in the 2019 Computational Toxicology BluePrint [@thomas_next_2019]. Anticipated NAMs included in this first battery are a profiling NAM, high-throughput phenotypic profiling (HTPP) [@nyffeler_bioactivity_2020] which measures a large number of cellular morphological features that can be used to inform point of departure, and potentially molecular initiating events and targeted NAMs including high-throughput screening (HTS) assays (e.g. such as ToxCast [@judson_2010; @richard_toxcast_2016]) for *in vitro* pharmacology profiling. Collectively, these technologies have the potential to fill gaps related to molecular initiating events, including targets such as nuclear receptor targets, G-protein coupled receptors, transporters, ion channels, kinases and other enzymes, as well as oxidative and cell stress. They can also be tailored to different routes of exposure or address specific toxicities that are more closely aligned with traditional adverse outcomes such as developmental toxicity. In addition to technologies to characterise biological activity, High Throughput Toxicokinetic (HTTK) approaches [@wetmore2015] to assess dosimetry and kinetics also form an important component of informing *in vivo* point of departure estimations based on *in vitro* bioactive concentrations.
 
 Herein, a cheminformatic workflow was developed to identify a set of approximately 300 representative candidate case study chemicals from the TSCA non-confidential active inventory that could be used along with reference chemicals [@judson_workflow_2019] to increase scientific confidence in the application of an adaptable NAM battery for informing chemical safety assessments. These data will be used to evaluate performance of the selected NAMs for further application and may also inform evolving frameworks for using multiple data streams to perform bioactivity-based dose-response assessment and hazard identification. The aims of this study are therefore:
 
@@ -90,8 +90,7 @@ A pragmatic number of final categories was needed to capture the breadth and div
 
 *EPA New Chemical Categories (NCC)*
 
-Under section 5 of the Toxic Substances Control Act (TSCA), EPA's New Chemicals program helps manage potential risk to human health and the environment from chemicals new to the marketplace. For the purposes of regulation under TSCA, a chemical that is on the TSCA Inventory is considered "existing" as in a substance is known to be in US commerce. Any substance that is not on the Inventory is considered "new". For a new chemical that will be imported or manufactured in the US, the manufacturer/importer is required to file a notice to EPA, known as a premanufacture notice (PMN). EPA then undertakes an assessment of that chemical to determine whether it poses a risk based on its hazard and exposure profile. One of the resources EPA makes use of during that assessment are the New Chemical Categories (NCC). These are a set of categories whereby substances with shared chemical and toxicological properties have been grouped together. Many of the categories are defined based on their structural characteristics such as functional groups and physicochemical parameters. In certain cases, the categories may provide indications of what ecotoxicological or toxicological hazards might be associated with that category thereby providing recommendations of the types of data that would be informative for an assessment. 
-There are currently 56 categories which were last updated in August 2010 (https://www.epa.gov/reviewing-new-chemicals-under-toxic-substances-control-act-tsca/chemical-categories-used-review-new) and are described in narrative form in a pdf document available for download. As part of this case study, the 56 categories were first re-implemented into a machine-readable format making use of structure query syntax (as Simplified molecular-input-entry-system (SMILES) arbitrary target specification (SMARTS)) to facilitate profiling of substances into one or more of the categories. The xml file of the NCC encoded in version 4.5 of the [OECD Toolbox](qsartoolbox.org) [@schultz_2018] was exported and formed the foundation of creating an independent ruleset for the NCC which was augmented for certain categories and coupled with predictions of physicochemical parameters to provide a means of profiling the TSCA landscape into their respective NCCs.
+Under section 5 of the Toxic Substances Control Act (TSCA), EPA's New Chemicals program helps manage potential risk to human health and the environment from chemicals new to the marketplace. For the purposes of regulation under TSCA, a chemical that is on the TSCA Inventory is considered "existing" as in a substance is known to be in US commerce. Any substance that is not on the Inventory is considered "new". For a new chemical that will be imported or manufactured in the US, the manufacturer/importer is required to file a notice to EPA, known as a premanufacture notice (PMN). EPA then undertakes an assessment of that chemical to determine whether it poses a risk based on its hazard and exposure profile. One of the resources EPA makes use of during that assessment are the New Chemical Categories (NCC). These are a set of categories whereby substances with shared chemical and toxicological properties have been grouped together. Many of the categories are defined based on their structural characteristics such as functional groups and physicochemical parameters. In certain cases, the categories may provide indications of what ecotoxicological or toxicological hazards might be associated with that category thereby providing recommendations of the types of data that would be informative for an assessment. There are currently 56 categories which were last updated in August 2010 (https://www.epa.gov/reviewing-new-chemicals-under-toxic-substances-control-act-tsca/chemical-categories-used-review-new) and are described in narrative form in a pdf document available for download. As part of this case study, the 56 categories were first re-implemented into a machine-readable format making use of structure query syntax (as Simplified molecular-input-entry-system (SMILES) arbitrary target specification (SMARTS)) to facilitate profiling of substances into one or more of the categories. The xml file of the NCC encoded in version 4.5 of the [OECD Toolbox](qsartoolbox.org) [@schultz_2018] was exported and formed the foundation of creating an independent ruleset for the NCC which was augmented for certain categories and coupled with predictions of physicochemical parameters to provide a means of profiling the TSCA landscape into their respective NCCs.
 
 *ClassyFire*
 
@@ -105,7 +104,7 @@ Since structural diversity was likely to be high within a primary category – a
 
 The nominally representative substance for a given terminal category was taken as the medoid. This was defined as the substance with the minimum pairwise distance from all other members of that category. This was used as an initial seed to then identify and additional set (up to 5) of structurally diverse substances within the category on the basis of their Morgan chemical fingerprints. The approach used in this case was the MaxMin procedure [@ashton_2002] within RDKit. As described in the RDKit documentation, the algorithm works as follows:
 
-1.   Generate chemical features (e.g. Morgan chemical fingerprints) for all the substances, both any initial seeds (in this case, the medoid computed) plus those to pick from (the candidate pool).
+1.  Generate chemical features (e.g. Morgan chemical fingerprints) for all the substances, both any initial seeds (in this case, the medoid computed) plus those to pick from (the candidate pool).
 2.  From the molecules in the candidate pool, find the one that has the maximum value for its minimum distance to substances in the picked set (hence the MaxMin name), calculating and recording the distances as required. This substance is the most distant one to those already picked so is transferred to the picked set.
 3.  Iterate back to step 2 until the number of substances required is met. The MaxMin procedure was performed for all terminal categories containing at least 5 or more members.
 
@@ -121,8 +120,9 @@ The landscape was constrained to only consider substances that were potentially 
 
 Aside from selection of representative substances from the full and constrained landscapes on the basis of the outlined considerations, several other aspects were also used to inform the final selection process. Analytical method detection amenability predictions for liquid-chromatography mass spectrometry (LM-MS) were generated using the QSAR model developed by Lowe et al. [@lowe_2021] to provide an indication of which chemicals lent themselves to aqueous-based screening. Structural considerations based on lists of substances on the Dashboard known to be potentially explosive or highly reactive were also tagged. Category membership size was another consideration - size bins were set at less than 20 members, between 20-70, between 70-150, between 150-300 and finally between 300-600. A final manual check was performed to review all proposed candidate substances for testing following application of all the aforementioned considerations. @tbl-constrained summarises the considerations defining the constrained landscape.
 
+|                                     |                                           |                                                                                                                                                       |
+|:-------------------:|:---------------------:|:--------------------------:|
 |            Physical form            |                  Liquid                   |                                                             melting point $\leq$ 20 &degC                                                             |
-|:-------------------:|:---------------------:|:---------------------------:|
 |                                     |                   Solid                   |                                                melting point \> 20 &degC and boiling point \>20 &degC                                                 |
 |           Vapour pressure           |       Non-volatile to semi-volatile       |                                                              vapour pressure \< 100 mmHg                                                              |
 |          Lipinski's Rules           |               Failures \< 3               | Lipinski's rules denote likely oral absorption based on LogP \<, MW \< 500 and Hydrogen bond donor or acceptors (\< 10 or \< 5). 2 failures permitted |
@@ -217,11 +217,11 @@ df1['index'] = (df1['index'].replace(np.nan, 'None')
 f, ax = plt.subplots(2,1, figsize = (20,15))
 df1.iloc[:10,:].NCC.plot.bar(ax = ax[0])
 df1.iloc[10:50,:].NCC.plot.bar(ax = ax[1])
-ax[0].set_xticklabels(df1['index'][:10],  rotation = 60,ha="right", fontsize = 12)
-ax[1].set_xticklabels(df1['index'][10:50],  rotation = 60,ha="right", fontsize = 12)
-ax[0].set_ylabel('Frequency', fontsize =18)
-ax[1].set_ylabel('Frequency', fontsize =18)
-ax[1].set_xlabel('NCC', fontsize =18)
+ax[0].set_xticklabels(df1['index'][:10],  rotation = 60,ha="right", fontsize = 18)
+ax[1].set_xticklabels(df1['index'][10:50],  rotation = 60,ha="right", fontsize = 18)
+ax[0].set_ylabel('Frequency', fontsize =22)
+ax[1].set_ylabel('Frequency', fontsize =22)
+ax[1].set_xlabel('NCC', fontsize =22)
 plt.tight_layout();
 ```
 
@@ -237,12 +237,12 @@ Since almost 47% of substances could not be assigned to a NCC, the ClassyFire [@
 cl = df.ClassyFire.value_counts().reset_index()
 f1, ax1 = plt.subplots(2,1, figsize = (20,15))
 cl.iloc[:10,:].ClassyFire.plot.bar(ax = ax1[0])
-ax1[0].set_xticklabels(cl['index'][:10],  rotation = 60,ha="right", fontsize = 12)
+ax1[0].set_xticklabels(cl['index'][:10],  rotation = 60,ha="right", fontsize = 18)
 cl.iloc[10:,:].ClassyFire.plot.bar(ax = ax1[1])
-ax1[1].set_xticklabels(cl['index'][10:],  rotation = 60,ha="right", fontsize = 12)
-ax1[0].set_ylabel('Frequency', fontsize =18)
-ax1[1].set_ylabel('Frequency', fontsize =18)
-ax1[1].set_xlabel('ClassyFire primary categories', fontsize =18)
+ax1[1].set_xticklabels(cl['index'][10:],  rotation = 60,ha="right", fontsize = 18)
+ax1[0].set_ylabel('Frequency', fontsize =22)
+ax1[1].set_ylabel('Frequency', fontsize =22)
+ax1[1].set_xlabel('ClassyFire primary categories', fontsize =22)
 plt.tight_layout();
 ```
 
@@ -261,7 +261,7 @@ value_counts = df2['group_str'].value_counts()
 value_counts_aggregated = value_counts.copy()
 value_counts_aggregated['misc'] = value_counts_aggregated[value_counts_aggregated < 40].sum()
 plt.figure(figsize = (15,12))
-value_counts_aggregated[(value_counts_aggregated >100) & (value_counts_aggregated < 750) ].plot(kind = 'barh')
+value_counts_aggregated[(value_counts_aggregated >100) & (value_counts_aggregated < 750) ].plot(kind = 'barh', fontsize = 18)
 plt.ylabel('Terminal Category', fontsize = 18)
 plt.xlabel('Category membership size', fontsize = 18)
 plt.tight_layout()
@@ -273,7 +273,7 @@ Although medoids were selected as the most representative substance from each te
 
 ## Diverse substance selection: constrained landscape
 
-The TSCA landscape was filtered to only consider substances that could be potentially procured based on an inference that substances with greater than 1 vendor indexed in Pubchem were more likely to be procurable; was of the appropriate physical form (based on melting point and boiling point considerations); met the element conditions already outlined; was not likely to be volatile; had less than 3 Lipinski failures; and had not been tested in the ToxCast assays previously (see @tbl-constrained). Based on these considerations, 7565 substances were tagged as potentially amenable to screening for NAM assays spanning 160 (89%) of the 180 terminal categories.
+The TSCA landscape was filtered to only consider substances that could be potentially procured based on an inference that substances with greater than 1 vendor indexed in Pubchem were more likely to be procurable; was of the appropriate physical form (based on melting point and boiling point considerations); met the element conditions already outlined; was not likely to be volatile; had less than 3 Lipinski failures; and had not been tested in the ToxCast assays previously (see @tbl-constrained). Based on these considerations, 7565 substances (out of the original 14,247) were tagged as potentially amenable to screening for NAM assays spanning 160 (89%) of the 180 terminal categories. The categories excluded for screenability were largely organometallics, inorganics or mixed metal/non-metal compounds. 
 
 A total of 438 diverse substances were selected as a result of the MaxMin approach being applied to 146 of the 160 terminal categories. The terminal categories where a MaxMin approach was not performed due to their limited membership are listed in @tbl-nomaxmin.
 
@@ -333,7 +333,7 @@ tsne_df= pd.read_csv(interim_dir+'tsne_df_080823.csv', index_col = [0])
 
 ```{python}
 #| label: fig-tsne
-#| fig-cap: Selected substances within the (a) constrained Landscape or (b) whole TSCA Landscape. a) organge denotes amenability to aqueous-based *in vitro* screening per the limits described in @tbl-constrained. In b) orange denotes the proposed candidate (denoted as "final_picks").
+#| fig-cap: Selected substances within the (a) constrained Landscape or (b) whole TSCA Landscape. a) orange denotes amenability to aqueous-based *in vitro* screening per the limits described in @tbl-constrained. In b) orange denotes the proposed candidate (denoted as "final_picks").
 
 fig, ax = plt.subplots(1,2,figsize = (10,9))
 tsne_df['final_picks'] = tsne_df['final_picks'].astype(int)
@@ -432,7 +432,7 @@ clusters_df = pd.read_csv(interim_dir+'pyridines_derivs.csv', index_col = [0])
 For terminal category ('Pyridines and derivatives', 1.0), there are at least 3 clusters of substances (@fig-derek-clust) which shared a common alert profile as shown in @tbl-pyridines. On the otherhand, there were at least 4 clusters (@fig-derek-dend) within terminal category ('Quinolines and derivatives', 3.0) which shared common alert endpoint profiles as shown in @tbl-quinolines.
 
 | cluster number |                                                                                          alerts                                                                                          |
-|:-----------------:|:---------------------------------------------------:|
+|:------------------:|:--------------------------------------------------:|
 |       1        | '('Carcinogenicity mammal', 'Di- to poly-halogenated alkane')', '('Hepatotoxicity mammal', '2-Halopyridine')','('Mutagenicity in vitro bacterium', 'Trichloromethyl aromatic compound')' |
 |       2        |                                              '('Hepatotoxicity mammal', '2-Halopyridine')','('Nephrotoxicity mammal', 'Aromatic nitrile')'                                               |
 |       3        |                                       '('Hepatotoxicity mammal', '2-Halopyridine')','('Skin irritation/corrosion mammal', 'Pyridine or analogue')'                                       |
@@ -467,7 +467,7 @@ clusters_c_df = pd.read_csv(interim_dir+'quinolines_derivs.csv')
 ```
 
 | cluster number |                                                                                                                                                                                               alerts                                                                                                                                                                                               |
-|:------------------:|:--------------------------------------------------:|
+|:-------------------:|:-------------------------------------------------:|
 |       1        | '('Carcinogenicity mammal', 'Aromatic amine or amide')', '('Hepatotoxicity mammal', 'Quinoline')','('Mutagenicity in vitro bacterium', 'Aromatic amine or amide')', '('Mutagenicity in vitro bacterium', 'Quinoline')','('Mutagenicity in vivo mammal', 'Aromatic amine or amide')', '('Mutagenicity in vivo mammal', 'Quinoline')','('Skin irritation/corrosion mammal', 'Pyridine or analogue')' |
 |       2        |                                                                                ('Androgen receptor modulation mammal', 'Quinoline or analogue')','('Mutagenicity in vitro bacterium', 'Quinoline')', '('Mutagenicity in vivo mammal', 'Quinoline')','('Skin irritation/corrosion mammal', 'Pyridine or analogue')'                                                                                 |
 |       3        |                        '('Carcinogenicity mammal', 'Aromatic nitroso compound')','('Carcinogenicity mammal', 'Polyhalogenated aromatic')', '('Mutagenicity in vitro bacterium', 'Aromatic nitroso compound')', '('Mutagenicity in vitro bacterium', 'Quinoline')', '('Mutagenicity in vivo mammal', 'Quinoline')', '('Thyroid toxicity mammal', 'Aromatic iodo compound')'                         |
@@ -502,18 +502,10 @@ import io
 
 ```
 
-::: {#fig-pyridine-clust layout-ncol="2"}
-![Cluster 1](img_cluster_1.png){#fig-pc1 width="50%"}
-
-![Cluster 2](img_cluster_2.png){#fig-pc2 width="50%"}
-
-Members of the ('Pyridines and derivatives', 1.0') terminal category that fall into cluster 1 vs. cluster 2 of the structural alert profile. 
-:::
-
 
 The alert profiles may assist with refining understanding of predicted toxicity within these structure-based categories, which are constructed pragmatically but may group substances that have small but important structural differences that lead to different predictions. For instance, in (‘Pyridines and derivatives’, 1.0), there is a difference in prediction between substances that contain a CCl3 group versus other chemicals in the terminal category which are still highly chlorinated bit lack this particular group (@fig-pyridine-clust). Further, the alert profiles within the terminal categories may provide useful insights on the types of targets or toxicities to evaluate in the *in vitro* NAM assays.
 
-No structural alert cluster profiles were produced for 10 terminal categories - namely ('Allenes', nan), ('Anthracenes', 5.0), ('Azobenzenes', 1.0), ('Azobenzenes', 5.0), ('Azobenzenes', 6.0), ('Azoles', 3.0), ('Hydrocarbons', 1.0), ('Mixed metal/non-metal compounds', 5.0), ('Organic oxygen compounds', nan), and ('Phenylpropanoids and polyketides', 1.0). Of these, 4 terminal categories were not associated with any alerts highlighting either no potential issues or an absence of knowledge within Derek Nexus. The 4 categories were ('Hydrocarbons', 1.0), ('Mixed metal/non-metal compounds', 5.0), ('Phenylpropanoids and polyketides', 1.0) and ('Allenes', nan). ('Allenes', nan) had only 2 members and ('Mixed metal/non-metal compounds', 5.0) had 5 members  - conceivably the low membership would limit the potential for an alert to be flagged whereas  ('Phenylpropanoids and polyketides', 1.0) and ('Hydrocarbons', 1.0) had many more members, 14 and 50 respectively. Here the broader diversity in structures across the category might be more likely to trigger an alert if relevant. For the other 6 terminal categories, each was associated with a number of alerts as shown in @tbl-terms. For example, terminal category ('Anthracenes', 5) was associated with 8 alerts that were present all 17 members; 7 of these were related to the anthraquinone moiety. The endpoints associated with these 7 alerts were carcinogenicity, mutagenicity, chromosomal damage, nepthrotoxicity, hepatotoxicity and mitochondrial dysfunction.
+No structural alert cluster profiles were produced for 10 terminal categories - namely ('Allenes', nan), ('Anthracenes', 5.0), ('Azobenzenes', 1.0), ('Azobenzenes', 5.0), ('Azobenzenes', 6.0), ('Azoles', 3.0), ('Hydrocarbons', 1.0), ('Mixed metal/non-metal compounds', 5.0), ('Organic oxygen compounds', nan), and ('Phenylpropanoids and polyketides', 1.0). Of these, 4 terminal categories were not associated with any alerts highlighting either no potential issues or an absence of knowledge within Derek Nexus. The 4 categories were ('Hydrocarbons', 1.0), ('Mixed metal/non-metal compounds', 5.0), ('Phenylpropanoids and polyketides', 1.0) and ('Allenes', nan). ('Allenes', nan) had only 2 members and ('Mixed metal/non-metal compounds', 5.0) had 5 members - conceivably the low membership would limit the potential for an alert to be flagged whereas ('Phenylpropanoids and polyketides', 1.0) and ('Hydrocarbons', 1.0) had many more members, 14 and 50 respectively. Here the broader diversity in structures across the category might be more likely to trigger an alert if relevant. For the other 6 terminal categories, each was associated with a number of alerts as shown in @tbl-terms. For example, terminal category ('Anthracenes', 5) was associated with 8 alerts that were present all 17 members; 7 of these were related to the anthraquinone moiety. The endpoints associated with these 7 alerts were carcinogenicity, mutagenicity, chromosomal damage, nepthrotoxicity, hepatotoxicity and mitochondrial dysfunction.
 
 |         Terminal category         | Number of alerts | Membership size |
 |:---------------------------------:|:----------------:|:---------------:|
@@ -537,7 +529,7 @@ derek_counts.plot(kind = 'hist')
 plt.xlabel('number of alerts');
 ```
 
-Profiling across all the substances in the landscape, the top 3 alerts that triggered the most substances were skin irritation/corrosion related with almost \~2000 substances presenting an alert. The next most populist alerts were for carcinogenicity, hepatoxicity and mutagenicity endpoints, approx 450-550 substances flagged each of these. The mean number of substances presenting an alert was 50 with the median number of substances presenting an alert being 11. Overall the alert profile across the TSCA landscape was quite sparse in terms of the number of alerts flagged. A number of the alerts were highly correlated with each other e.g the same toxicophore present in 2 related endpoints, chromosome damage and Ames mutagence such that if a  correlation threshold of 0.8 was used to filter out correlating alerts, up to 215 alerts could dropped from further consideration. A count of  number of alerts across the 53 endpoints was summarised across the categories to gain a perspective of the relationship between categories and the endpoints that were triggered based on the alerts. @fig-alert-tox-hm shows a clustermap of the alert endpoints as a function of the terminal categories. For example, terminal categories containing benzene compounds and their derivatives or organohalogen compounds were typically associated with heptatoxicity, nephrotoxicity and carcinogenicity related endpoints. Categories with a zero count for the alerts may either because there is no knowledge within Derek or because those categories are potentially unlikely to be associated with toxicity effects.
+Profiling across all the substances in the landscape, the top 3 alerts that triggered the most substances were skin irritation/corrosion related with almost \~2000 substances presenting an alert. The next most frequent alerts were for carcinogenicity, hepatoxicity and mutagenicity endpoints, approx 450-550 substances flagged each of these. The mean number of substances presenting an alert was 50 with the median number of substances presenting an alert being 11. Overall the alert profile across the TSCA landscape was quite sparse in terms of the number of alerts flagged. A number of the alerts were highly correlated with each other e.g the same toxicophore present in 2 related endpoints, chromosome damage and Ames mutagence such that if a correlation threshold of 0.8 was used to filter out correlating alerts, up to 215 alerts could dropped from further consideration. A count of number of alerts across the 53 endpoints was summarised across the categories to gain a perspective of the relationship between categories and the endpoints that were triggered based on the alerts. @fig-alert-tox-hm shows a clustermap of the alert endpoints as a function of the terminal categories. For example, terminal categories containing benzene compounds and their derivatives or organohalogen compounds were typically associated with heptatoxicity, nephrotoxicity and carcinogenicity related endpoints. Categories with a zero count for the alerts may either because there is no knowledge within Derek or because those categories are potentially unlikely to be associated with toxicity effects.
 
 ```{python}
 import pandas as pd
@@ -569,7 +561,7 @@ sns.clustermap(new_df,
 
 ## Profiling toxicity predictions from TEST
 
-Predictions were generated for the developmental and Ames mutagenicity endpoints using TEST. Consensus predictions were available for 14,194 substances. To explore the coverage of positive/negative predictions across the landscape, t-SNE plots were generated to aid visualisation. @fig-test shows both endpoints. Positive developmental toxicity predictions were found to be quite evenly spread across the landscape whereas positive Ame results appear to cluster in some regions of the chemical space. To probe this a little more, the clustered region of positive predictions were overlaid relative to the terminal categories to start to gauge whether certain categories were visually overrepresented in positive Ames results. To simplify the representation, all terminal categories with fewer than 40 members were aggregated into one 'miscellaneous' category which were hidden in the resulting t-sne plot in @fig-ames.
+Predictions were generated for the developmental and Ames mutagenicity endpoints using TEST. Consensus predictions were available for 14,194 substances. To explore the coverage of positive/negative predictions across the landscape, t-SNE plots were generated to aid visualisation. @fig-test shows both endpoints. Positive developmental toxicity predictions were found to be quite evenly spread across the landscape whereas positive Ame results appear to cluster in some regions of the chemical space. To probe this a little more, the clustered region of positive predictions were overlaid relative to the terminal categories to start to gauge whether certain categories were visually overrepresented in positive Ames results (@fig-ames). 
 
 ```{python}
 tsne_all_df = pd.read_csv(interim_dir+'tsne_all_df.csv', index_col = [0])
@@ -596,24 +588,6 @@ plt.tight_layout();
 Many of the clustered positive predictions appear to be associated with substances in the Benzene and substituted derivatives but exploring the ratio of Ames positives to Ames negatives with the terminal categories showed that Azobenzenes and Anthracenes were substantially overrepresented (@fig-ames). The top 10 terminal categories where a ratio between predicted Ames positive and negative outcomes exceeds 2 are shown in @tbl-amesratio. In contrast ('Steroids and steroid derivatives', nan) and ('Phenylpropanoids and polyketides', 4.0) are examples of terminal categories where developmental toxicity predictions exceed no developmental toxicity (@tbl-devratio). t-SNE plots of 3 of the Ames and Developmental toxicity terminal categories where these ratios of positive:negative outcomes are high are shown in @fig-ames2.
 
 ```{python}
-#| label: fig-ames
-#| fig-cap: t-SNE plots of TEST mutagenicity predictions for categories with members exceeding 40
-
-
-ames_aggregated = tsne_all_df.groupby(['group_str'])['Pred_Ames'].value_counts().copy()
-misc = ames_aggregated[ames_aggregated <40].reset_index(name = 'count')['group_str'].tolist()
-tsne_all_df['new_group'] = tsne_all_df['group_str'].apply(lambda x: 'misc' if x in misc else x)
-
-f = plt.figure(figsize = (20,9))
-g = sns.scatterplot(x="tsne_x", y="tsne_y", data=tsne_all_df[tsne_all_df['new_group'] !='misc'], hue = 'new_group', label = 'new_group')
-
-    #plt.subplots_adjust(hspace = 0.8)
-handles, labels = ax.get_legend_handles_labels()
-
-plt.legend( bbox_to_anchor=(1.15,0.75), loc=2, borderaxespad=0., fontsize='large');
-```
-
-```{python}
 gss = tsne_all_df.groupby(['group_str', 'Pred_Ames']).size().reset_index().pivot(index='group_str', columns='Pred_Ames', values=0)
 gss['ratio'] = gss['Mutagenicity Positive']/gss['Mutagenicity Negative']
 #gss.sort_values(by = 'ratio', ascending = False).head(10)
@@ -635,7 +609,7 @@ gss['ratio'] = gss['Mutagenicity Positive']/gss['Mutagenicity Negative']
 : Top 10 terminal categories where the ratio between positive:negative exceeds 2 {#tbl-amesratio}
 
 | Terminal Category                                 | Developmental NON-toxicant | Developmental toxicant | Ratio |
-|--------------------|:----------------:|:----------------:|:----------------:|
+|-------------------|:----------------:|:----------------:|:----------------:|
 | ('Steroids and steroid derivatives', nan)         |            1.0             |          31.0          | 31.0  |
 | ('Phenylpropanoids and polyketides', 4.0)         |            6.0             |          96.0          | 16.0  |
 | ('Organic salts', nan)                            |            1.0             |          16.0          | 16.0  |
@@ -660,9 +634,157 @@ import pickle
 tsne_lst = pickle.load(open(interim_dir+ "tsne_lst_100823.pkl", "rb" ) )
 ```
 
+```{python}
+g = pd.concat([tsne_all_df.groupby(['Pred_DevTox']).count()[['group_str', 'final_picks']], tsne_all_df.groupby(['Pred_Ames']).count()[['group_str', 'final_picks']]]).reset_index().melt(id_vars=['index'], value_vars=['group_str', 'final_picks'])
+#reset_index().pivot(index='group_str', columns='Pred_Ames', values=0)
+g.columns = ['Prediction', 'Landscape', 'Count']
+g['Landscape'] = g.Landscape.replace('group_str', 'TSCA_landscape')
+```
+
+In terms of the profile of the selected candidate substances relative to the full landscape, the number of substances predicted positive and negative is shown in @fig-count. The profile trend between the full landscape and the selected candidate substances are consistent but the number of substances predicted to be developmental toxicants is surprisingly high. This is at least consistent with the test set performance metrics reported in the user manual (https://www.epa.gov/sites/default/files/2016-05/documents/600r16058.pdf) namely that the sensitivity of the developmental toxicity consensus model was 0.9 in contrast to the specificity 0f 0.471. The test set performance metrics were similar for sensitivity and specificity, 0.79 and 0.756 respectively.
+
+```{python}
+#| label: fig-count
+#| fig-cap: 'Comparison of overall TSCA landscape and final selections in terms of the number of positive Ames or Developmental toxicity profile predictions'
+
+
+sns.barplot(y = 'Prediction', x = 'Count', hue = 'Landscape', data = g) 
+plt.xscale('log');
+```
+
+## Profiling toxicity predictions from OPERA
+
+Predictions were generated using OPERA v2.8 for all TSCA landscape substances. @fig-catmos presents the distribution of CATMOS predictions to show the range of LD50 acute oral values for the landscape as a whole and how this is represented for the candidate selections. The medians of the TSCA landscape and candidate selections were very similar, with values \~2300 mg/kg and \~2100 mg/kg which are borderline low toxicity. The median LD50 values differed across the terminal categories with ('Organosulfur compounds', 2.0), ('Allenes', nan) and ('Allenes', nan) having the lowest median LD \~245 mg/kg whereas ('Benzenoids', 5.0) and ('Fatty Acyls', 3.0) had the highest median \~7000 mg/kg. The full set of categories with their median LD50 values are provided in the supplementary information. @fig-catmos-ecdf showcase the ECDFs for selected terminal categories to highlight the difference in potencies. Those terminal categories with lower LD50 values (more potent) have ECDFs that are more right shifted.
+
+```{python}
+opera_df = pd.read_csv(interim_dir+'opera_df_tox.csv', index_col = [0])
+```
+
+```{python}
+opera_df['final_picks'] = opera_df['final_picks'].replace(np.nan, 0)
+```
+
+```{python, fig.width="50%"}
+#| label: fig-catmos
+#| fig-cap: 'Distribution of acute oral toxicity predictions for the TSCA Landscape relative to the candidate substances'
+ax = opera_df.plot.box(column="CATMoS_LD50_pred", by="final_picks",  figsize=(6, 4))
+plt.xticks([1,2], ['all_TSCA','final_picks'])
+plt.yscale('log')
+# Set the labels for x-axis ticks
+#labels[1] = 'all_TSCA'
+#labels[2] = 'final_picks'
+#ax.set_xticklabels(labels)
+```
+
+```{python,fig.alight="H"}
+#| label: fig-catmos-ecdf
+#| fig-cap: ECDFs of acute oral toxicity predictions for selected terminal categories
+import pickle
+summaries = pickle.load(open(interim_dir+ "summaries_catmos.pkl", "rb" ) )
+
+fig, ax = plt.subplots(figsize = (9,6))
+for i in range(len(summaries)):
+    if summaries[i]['label'] in ["('Organic acids and derivatives', 1.0)", "('Benzenoids', 5.0)", "('Fatty Acyls', 3.0)","('Alkaloids and derivatives', nan)", "('Pyridines and derivatives', 3.0)", "('Azolidines', 4.0)", "('Anthracenes', 6.0)"]:
+        ax.set_xlabel('CATMoS_log10_LD50_pred')
+        ax.set_ylabel('ECDF')
+        #ax.set_title('ECDFs of selected between Category-Subcategory combinations')
+        ax.plot(np.log10(summaries[i]['ecdfx']),summaries[i]['ecdfy'], marker = '.',  label = summaries[i]['label']);
+        ax.legend(bbox_to_anchor=(1, 1))
+        
+```
+
+## Predicted ToxCast Profile
+
+@fig-toxcast shows an overview of regions of the chemical landscape as well as different types of assays that give rise to positive predictions. 10% of substances were positive in 48 of the 81 assays whereas only 2 assays 'ATG_NRF2_ARE_CIS', 'ATG_PXRE_CIS' resulted in more than 50% of substances predicted to be positive. Pregnane X receptor (PXR) is a nuclear receptor that regulates the metabolism and disposition of various xenobiotics and endobioitics. ATG_NRF2_ARE_CIS is an assay that provides a measure oxidative stress. 30% of substances were predicted to be active in the following 8 assays 'ATG_DR4_LXR_CIS', 'ATG_ERE_CIS', 'ATG_ERa_TRANS', 'ATG_NRF2_ARE_CIS', 'ATG_PPARg_TRANS', 'ATG_PXRE_CIS', 'ATG_PXR_TRANS', 'ATG_VDRE_CIS' - some of which are associated with endocrine activity or oxidative stress. Across the chemicals the terminal categories that were associated to these positive predictions were ('Benzene and substituted derivatives', 8.0), ('Benzene and substituted derivatives', 2.0), ('Prenol lipids', 2.0), ('Fatty Acyls', 1.0), ('Benzene and substituted derivatives', 10.0), ('Organooxygen compounds', 3.0). These results suggest that a significant number of candidate substances would have potentially no credible activity in nuclear receptor transcription factor assays, but on the other hand, that especially for substances in the bottom \~30% of this heatmap, that *in vitro* pharmological profiling or targeted assays of some nature could be a useful empirical dataset to confirm these machine learning predictions. For some of the candidate substances, there appears to be a prediction of “pan-activity” across several nuclear receptor targets, suggesting that these chemicals might act non-specifically or have some unknown affinity for any one of these targets in vitro. The high number of positives in the ATG_NRF2_ARE_CIS assay may indicate that at higher concentrations a number of these candidate substances would be capable of modulating markers of oxidative stress *in vitro*; however, the machine learning predictions are made for binary activity without respect to potency.
+
+```{python}
+#| label: fig-toxcast
+#| fig-cap: 'Clustermap of the TSCA landscape with respect to predicted probabilites of Attagene assay hitcalls'
+
+import warnings
+warnings.filterwarnings("ignore")
+
+atg_grp = pd.read_csv(interim_dir+'atg_predicted_250424.csv', index_col = [0])
+atg_grp = atg_grp.set_index('dtxsid')
+
+ax =sns.clustermap(atg_grp.iloc[:, 1:-3], cmap='coolwarm', figsize=(10, 9), linecolor = 'white',dendrogram_ratio=(.1, .2), cbar_kws={"shrink": 0.5 }, cbar_pos=(0.95, .5, .03, .2))
+#ax.ax_cbar.set_ylabel("prob-hit",size=8)
+ax.ax_heatmap.set_yticks([])
+ax.ax_heatmap.set_xticklabels(ax.ax_heatmap.get_xmajorticklabels(), fontsize = 6) ;
+#plt.setp(ax.ax_heatmap.yaxis.get_majorticklabels(), fontsize=8);
+```
+
+## Availability of *in vivo* toxicity data within terminal categories
+
+There were only 24 non-cancer and 32 reproductive/developmental PODs and for the candidate set compared with 2355 and 2353 respectively for the full landscape. The variation in potency differed quite considerably. For reproductive/developmental PODs, the min, median and max values were 10.93, 114 and 838 mg/kg-bw/day respectively for the candidate set. In contrast for the full landscape, these values were 4E-08, 70.6 and 12,890 mg/kg-bw/day highlightly a much broader variation in potencies. For the non-cancer endpoints, the min, median and max values were 3E-05, 21 and 4587 mg/kg-bw/day for the full landscape but 0.346, 26 and 949 mg/kg-bw/day for the candidate set. Across the terminal categories, ('Isoindoles and derivatives', nan) and ('Organosulfur compounds', 2.0) has the lowest median non-cancer PODs whereas ('Azolidines', 4.0) and ('Triazines', nan) had the lowest median reproductive/developmental PODs demonstrating that the potencies varied considerably across both endpoints and chemical categories.
+
+# Conclusions
+
+A cheminformatics workflow was developed in an effort to identify a set of approximately 300 representative candidate case study chemicals from the TSCA landscape that could be used in screening with a range of different NAM approaches. A categorisation scheme making use of the ClassyFire ontology formed the basis of initial primary categories which were then subset into smaller more structurally similar categorises following hierarchical clustering. Since NAM testing was envisaged, the landscape was bounded by technical testing constraints in aqueous *in vitro* assays. Physicochemical properties, reactivity flags, procurabillity, category size and analytical method detection amenability considerations were used to subset a portion of the landscape from which substances could be identified for testing. A set of 318 substances were proposed that spanned 106 (\~59%) of the terminal categories. In general, the proposed 318 substances spanned the overall structural diversity of both the constrained and full landscape well. The physicochemical properties profile was similar for both the candidate substances and the landscape and the median potencies of the acute oral toxicity predictions between the TSCA landscape and candidate substances were also very similar. All these factors lend credence that the candidate set of substances were a reasonable and representative set of the broader TSCA landscape to the extent that it could be procured and tested. 
+Attention was then turned to exploring the TSCA landscape through the lens of the terminal categories constructed to gauge the bioactivities expected, the sorts of toxicity endpoints that were likely to be exhibited as well as their potencies. To summarise such insights network graphs were constructed to capture the associations between categories and their active responses in ToxCast assays, specific endpoints as flagged by Derek alerts (@fig-nx). The candidate substances for screening spanned a range of alerts and toxicity predictions, from zero to many, and in general were somewhat data-poor with respect to publicly available *in vivo* data from repeat dose or reproductive/developmental study data in the public domain. The use of a cheminformatic Tier 0 could help with more detailed toxicity profiling within terminal categories when data are not available in addition to being informative of portions of the TSCA chemical landscape that may be outside of the applicability domain for certain models or for which empirical *in vitro* data may be useful to confirm a bioactivity or toxicity along with an indication of potency.
+
+::: {#fig-nx}
+![Network graph representation of primary categories and their predicted Derek endpoint and ToxCast assay outcome](derek_txcst_nx.png){#fig-nx1 fig-pos="H"} 
+
+Network graphs of primary categories and their predicted Derek endpoint and ToxCast assay outcome. The linkages show the associations between different ToxCast assays or toxicity endpoint (shown by the blue circles) and the terminal categories (shown by the green circles). For example, Benzene subitituted derivatives are associated with many endpoints including bone marrow toxicity, nephrotoxicity, mutagenicity, methaemoglobinaemia.
+:::
+
+From these representations, such insights as to which categories are typically associated with a specific outcome or an array of outcomes can be more readily identified which are informative for prioritisation efforts.
+
+# REFERENCES {.unnumbered}
+
+
+::: {#refs}
+:::
+
+{{< pagebreak >}}
+
+```{=tex}
+\newpage
+\appendix
+\renewcommand{\thefigure}{A\arabic{figure}}
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+```
+# Supplementary information {.appendix}
+
+## Supplementary Figures {.unnumbered}
+
+
+::: {#fig-pyridine-clust layout-ncol="2"}
+![Cluster 1](img_cluster_1.png){#fig-pc1 width="50%"}
+
+![Cluster 2](img_cluster_2.png){#fig-pc2 width="50%"}
+
+Members of the ('Pyridines and derivatives', 1.0') terminal category that fall into cluster 1 vs. cluster 2 of the structural alert profile.
+:::
+
+{{< pagebreak >}}
+
+
+```{python}
+#| label: fig-ames
+#| fig-cap: t-SNE plots of TEST mutagenicity predictions for categories with members exceeding 40. All terminal categories with fewer than 40 members were aggregated into one 'miscellaneous' category.
+
+
+ames_aggregated = tsne_all_df.groupby(['group_str'])['Pred_Ames'].value_counts().copy()
+misc = ames_aggregated[ames_aggregated <40].reset_index(name = 'count')['group_str'].tolist()
+tsne_all_df['new_group'] = tsne_all_df['group_str'].apply(lambda x: 'misc' if x in misc else x)
+
+f = plt.figure(figsize = (20,9))
+g = sns.scatterplot(x="tsne_x", y="tsne_y", data=tsne_all_df[tsne_all_df['new_group'] !='misc'], hue = 'new_group', label = 'new_group')
+
+#plt.subplots_adjust(hspace = 0.8)
+#handles, labels = ax.get_legend_handles_labels()
+
+plt.legend( bbox_to_anchor=(1.15,0.75), loc=2, borderaxespad=0., fontsize='large');
+```
+
+
 ```{python, fig.width="50%"}
 #| label: fig-ames2
-#| fig-cap: 't-SNE plots of selected categories that are overrepresented by Ames positive predictions '
+#| fig-cap: 't-SNE plots of selected categories that are overrepresented by a) Ames positive predictions or b) Developmental toxicity predictions'
 
 
 
@@ -725,101 +847,3 @@ legend_title = 'Pred_DevTox'
 ax6.legend(handles1,labels1, title =legend_title,bbox_to_anchor=(1.05,0.75), loc=2, borderaxespad=0.);
 
 ```
-
-```{python}
-g = pd.concat([tsne_all_df.groupby(['Pred_DevTox']).count()[['group_str', 'final_picks']], tsne_all_df.groupby(['Pred_Ames']).count()[['group_str', 'final_picks']]]).reset_index().melt(id_vars=['index'], value_vars=['group_str', 'final_picks'])
-#reset_index().pivot(index='group_str', columns='Pred_Ames', values=0)
-g.columns = ['Prediction', 'Landscape', 'Count']
-g['Landscape'] = g.Landscape.replace('group_str', 'TSCA_landscape')
-```
-
-In terms of the profile of the selected candidate substances relative to the full landscape, the number of substances predicted positive and negative is shown in @fig-count. The profile trend between the full landscape and the selected candidate substances are consistent but the number of substances predicted to be developmental toxicants is surprisingly high. This is at least consistent with the test set performance metrics reported in the user manual (https://www.epa.gov/sites/default/files/2016-05/documents/600r16058.pdf) namely that the sensitivity of the developmental toxicity consensus model was 0.9 in contrast to the specificity 0f 0.471. The test set performance metrics were similar for sensitivity and specificity, 0.79 and 0.756 respectively.
-
-```{python}
-#| label: fig-count
-#| fig-cap: 't-SNE plots of selected categories that are overrepresented by Ames positive predictions '
-
-
-sns.barplot(y = 'Prediction', x = 'Count', hue = 'Landscape', data = g) 
-plt.xscale('log');
-```
-
-## Profiling toxicity predictions from OPERA
-
-Predictions were generated using OPERA v2.8 for all TSCA landscape substances. @fig-catmos presents the distribution of CATMOS predictions to show the range of LD50 acute oral values for the landscape as a whole and how this is represented for the candidate selections. The medians of the TSCA landscape and candidate selections were very similar, with values \~2300 mg/kg and \~2100 mg/kg which are borderline low toxicity. The median LD50 values differed across the terminal categories with ('Organosulfur compounds', 2.0), ('Allenes', nan) and ('Allenes', nan) having the lowest median LD \~245 mg/kg whereas ('Benzenoids', 5.0) and ('Fatty Acyls', 3.0) had the highest median \~7000 mg/kg. The full set of categories with their median LD50 values are provided in the supplementary information. @fig-catmos-ecdf showcase the ECDFs for selected terminal categories to highlight the difference in potencies. Those terminal categories with lower LD50 values (more potent) have ECDFs that are more right shifted.
-
-```{python}
-opera_df = pd.read_csv(interim_dir+'opera_df_tox.csv', index_col = [0])
-```
-
-```{python}
-opera_df['final_picks'] = opera_df['final_picks'].replace(np.nan, 0)
-```
-
-```{python, fig.width="50%"}
-#| label: fig-catmos
-#| fig-cap: 'Distribution of acute oral toxicity predictions for the TSCA Landscape relative to the candidate substances'
-ax = opera_df.plot.box(column="CATMoS_LD50_pred", by="final_picks",  figsize=(6, 4))
-plt.xticks([1,2], ['all_TSCA','final_picks'])
-plt.yscale('log')
-# Set the labels for x-axis ticks
-#labels[1] = 'all_TSCA'
-#labels[2] = 'final_picks'
-#ax.set_xticklabels(labels)
-```
-
-```{python,fig.alight="H"}
-#| label: fig-catmos-ecdf
-#| fig-cap: ECDFs of acute oral toxicity predictions for selected terminal categories
-import pickle
-summaries = pickle.load(open(interim_dir+ "summaries_catmos.pkl", "rb" ) )
-
-fig, ax = plt.subplots(figsize = (9,6))
-for i in range(len(summaries)):
-    if summaries[i]['label'] in ["('Organic acids and derivatives', 1.0)", "('Benzenoids', 5.0)", "('Fatty Acyls', 3.0)","('Alkaloids and derivatives', nan)", "('Pyridines and derivatives', 3.0)", "('Azolidines', 4.0)", "('Anthracenes', 6.0)"]:
-        ax.set_xlabel('CATMoS_log10_LD50_pred')
-        ax.set_ylabel('ECDF')
-        #ax.set_title('ECDFs of selected between Category-Subcategory combinations')
-        ax.plot(np.log10(summaries[i]['ecdfx']),summaries[i]['ecdfy'], marker = '.',  label = summaries[i]['label']);
-        ax.legend(bbox_to_anchor=(1, 1))
-        
-```
-
-## Predicted ToxCast Profile
-
-@fig-toxcast shows an overview of regions of the chemical landscape as well as different types of assays that give rise to positive predictions. 10% of substances were positive in 48 of the 81 assays whereas only 2 assays 'ATG_NRF2_ARE_CIS', 'ATG_PXRE_CIS' resulted in more than 50% of substances predicted to be positive. Pregnane X receptor (PXR) is a nuclear receptor that regulates the metabolism and disposition of various xenobiotics and endobioitics. ATG_NRF2_ARE_CIS is an assay that provides a measure oxidative stress. 30% of substances were predicted to be active in the following 8 assays 'ATG_DR4_LXR_CIS', 'ATG_ERE_CIS', 'ATG_ERa_TRANS', 'ATG_NRF2_ARE_CIS', 'ATG_PPARg_TRANS', 'ATG_PXRE_CIS', 'ATG_PXR_TRANS', 'ATG_VDRE_CIS' - some of which are associated with endocrine activity or oxidative stress. Across the chemicals the terminal categories that were associated to these positive predictions were ('Benzene and substituted derivatives', 8.0), ('Benzene and substituted derivatives', 2.0), ('Prenol lipids', 2.0), ('Fatty Acyls', 1.0), ('Benzene and substituted derivatives', 10.0), ('Organooxygen compounds', 3.0). These results suggest that a significant number of candidate substances would have potentially no credible activity in nuclear receptor transcription factor assays, but on the other hand, that especially for substances in the bottom ~30% of this heatmap, that *in vitro* pharmological profiling or targeted assays of some nature could be a useful empirical dataset to confirm these machine learning predictions. For some of the candidate substances, there appears to be a prediction of “pan-activity” across several nuclear receptor targets, suggesting that these chemicals might act non-specifically or have some unknown affinity for any one of these targets in vitro. The high number of positives in the ATG_NRF2_ARE_CIS assay may indicate that at higher concentrations a number of these candidate substances would be capable of modulating markers of oxidative stress *in vitro*; however, the machine learning predictions are made for binary activity without respect to potency.  
-
-```{python}
-#| label: fig-toxcast
-#| fig-cap: 'Clustermap of the TSCA landscape with respect to predicted probabilites of Attagene assay hitcalls'
-
-import warnings
-warnings.filterwarnings("ignore")
-
-atg_grp = pd.read_csv(interim_dir+'atg_predicted_250424.csv', index_col = [0])
-atg_grp = atg_grp.set_index('dtxsid')
-
-ax =sns.clustermap(atg_grp.iloc[:, 1:-3], cmap='coolwarm', figsize=(10, 9), linecolor = 'white',dendrogram_ratio=(.1, .2), cbar_kws={"shrink": 0.5 }, cbar_pos=(0.95, .5, .03, .2))
-#ax.ax_cbar.set_ylabel("prob-hit",size=8)
-ax.ax_heatmap.set_yticks([])
-ax.ax_heatmap.set_xticklabels(ax.ax_heatmap.get_xmajorticklabels(), fontsize = 6) ;
-#plt.setp(ax.ax_heatmap.yaxis.get_majorticklabels(), fontsize=8);
-```
-
-## Availability of *in vivo* toxicity data within terminal categories
-
-There were only 24 non-cancer and 32 reproductive/developmental PODs and for the candidate set compared with 2355 and 2353 respectively for the full landscape. The variation in potency differed quite considerably. For reproductive/developmental PODs, the min, median and max values were 10.93, 114 and 838 mg/kg-bw/day respectively for the candidate set. In contrast for the full landscape, these values were 4E-08, 70.6 and 12,890 mg/kg-bw/day highlightly a much broader variation in potencies. For the non-cancer endpoints, the min, median and max values were 3E-05, 21 and 4587 mg/kg-bw/day for the full landscape but 0.346, 26 and 949 mg/kg-bw/day for the candidate set. Across the terminal categories, ('Isoindoles and derivatives', nan) and ('Organosulfur compounds', 2.0) has the lowest median non-cancer PODs whereas ('Azolidines', 4.0) and ('Triazines', nan) had the lowest median reproductive/developmental PODs demonstrating that the potencies varied considerably across both endpoints and chemical categories.
-
-# Conclusions
-
-A cheminformatics workflow was developed in an effort to identify a set of approximately 300 representative candidate case study chemicals from the TSCA landscape that could be used in screening with a range of different NAM approaches. A categorisation scheme making use of the ClassyFire ontology formed the basis of initial primary categories which were then subset into smaller more structurally similar categorises following hierarchical clustering. Since NAM testing was envisaged, the landscape was bounded by technical testing constraints in aqueous *in vitro* assays. Physicochemical properties, reactivity flags, procurabillity, category size and analytical method detection amenability considerations were used to subset a portion of the landscape from which substances could be identified for testing. A set of 318 substances were proposed that spanned 106 (\~59%) of the terminal categories. In general, the proposed 318 substances spanned the overall structural diversity of both the constrained and full landscape well. The physicochemical properties profile was similar for both the candidate substances and the landscape and the median potencies of the acute oral toxicity predictions between the TSCA landscape and candidate substances were also very similar. All these factors led credence that the candidate set of substances were a reasonable and representative set of the broader TSCA landscape to the extent that it could be procured and tested. Attention was then turned to exploring the TSCA landscape through the lens of the terminal categories constructed to gauge the bioactivities expected, the sorts of toxicity endpoints that were likely to be exhibited as well as their potencies. To summarise such insights network graphs were constructed to capture the associations between categories and their active responses in ToxCast assays, specific endpoints as flagged by Derek alerts or predicted acute oral toxicity hazard classifications (@fig-nx). The candidate substances for screening spanned a range of alerts and toxicity predictions, from zero to many, and in general were somewhat data-poor with respect to publicly available *in vivo* data from repeat dose or reproductive/developmental study data in the public domain. The use of a cheminformatic Tier 0 could help with more detailed toxicity profiling within terminal categories when data are not available in addition to being informative of portions of the TSCA chemical landscape that may be outside of the applicability domain for certain models or for which empirical *in vitro* data may be useful to confirm a bioactivity or toxicity along with an indication of potency. 
-
-::: {#fig-nx layout-nrow="2"}
-![Network graph representation of primary categories and their predicted Derek endpoint and ToxCast assay outcome](derek_txcst_nx.png){#fig-nx1 fig-pos="H"} ![Network graph representation of primary categories and their predicted acute oral hazard classification](catmos_nx.png){#fig-nx2 fig-pos="H"}
-
-Network graphs of primary categories and their predicted Derek endpoint, ToxCast assay outcome and acute oral hazard classification.
-:::
-
-From these representations, such insights as to which categories are typically associated with a specific outcome or an array of outcomes can be more readily identified which are informative for prioritisation efforts.
-
-# REFERENCES
