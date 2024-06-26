@@ -94,7 +94,7 @@ Under section 5 of the Toxic Substances Control Act (TSCA), EPA's New Chemicals 
 
 *ClassyFire*
 
-All substances were also assigned into classes using the structure-based chemical taxonomy known as ClassyFire developed by the Wishart laboratory [@djoumbou2016]. ClassyFire assigns chemicals into a taxonomy consisting of \>4800 different categories. The taxonomy comprises 11 different levels such as Kingdom, SuperClass, Class, SubClass etc. The webserver, accessible at(http://classyfire.wishartlab.com/), was used to query each substance by its hashed International Chemical Identifier (InChIKey) [@heller_inchi_2015] and assign it into Kingdom-SubClass levels. For the 14,247 substances - 13,477 were assigned into Kingdom 'Organic compounds', 593 into Kingdom 'Inorganic' and the remaining 179 returned no information. These 179 were assigned into an arbitary class of "Other" to facilitate ongoing processing.
+All substances were also assigned into classes using the structure-based chemical taxonomy known as ClassyFire developed by the Wishart laboratory [@djoumbou2016]. ClassyFire assigns chemicals into a taxonomy consisting of \>4800 different categories. The taxonomy comprises 11 different levels such as Kingdom, SuperClass, Class, SubClass etc. The webserver, accessible at (http://classyfire.wishartlab.com/), was used to query each substance by its hashed International Chemical Identifier (InChIKey) [@heller_inchi_2015] and assign it into Kingdom-SubClass levels. For the 14,247 substances - 13,477 were assigned into Kingdom 'Organic compounds', 593 into Kingdom 'Inorganic' and the remaining 179 returned no information. These 179 were assigned into an arbitary class of "Other" to facilitate ongoing processing.
 
 ### Secondary and Terminal categorisation
 
@@ -110,11 +110,11 @@ The nominally representative substance for a given terminal category was taken a
 
 ## OPERA generated physicochemical parameters {#sec-opera}
 
-The OPERA expert system [@mansouri2018] version 2.8 was used to generate a range of physicochemical properties predictions for all substances in the dataset. LogP (octanol water partition coefficient), melting point, boiling point and vapour pressure predictions were generated since these would provide a means of determining physical form at room temperature and volatility (both considerations for technical testing potential). Substances were standardised into QSAR READY format so that stereochemistry, salt forms etc. were removed from the substances under consideration. Accordingly some substances could not be converted into QSAR READY format. Merging OPERA predictions with the starting dataset found that 946 substances were not associated with any OPERA prediction either because substances were mixtures (6), were too large in size to be processed (12), could not be converted into a molecular objective by RDKit (51) or were inorganic (588) or organometallic (289) in nature. Predictions were possible for up to 13,299 substances from the starting landscape which were carried forward for processing and analysis.
+The OPERA expert system [@mansouri2018] version 2.8 was used to generate a range of physicochemical properties predictions for all substances in the dataset. LogP (octanol water partition coefficient), melting point, boiling point and vapour pressure predictions were generated since these would provide a means of determining physical form at room temperature and volatility (both considerations for technical testing potential). Substances were standardised into QSAR READY format so that stereochemistry, salt forms etc. were removed from the substances under consideration. Accordingly some substances could not be converted into QSAR READY format. Merging OPERA predictions with the starting dataset found that 946 substances were not associated with any OPERA prediction either because substances were mixtures (6), were too large in size to be processed (12), could not be converted into a molecular object by RDKit (51) or were inorganic (588) or organometallic (289) in nature. Predictions were possible for up to 13,299 substances from the starting landscape which were carried forward for processing and analysis.
 
 ## Creation of a constrained landscape
 
-The landscape was constrained to only consider substances that were potentially screenable in the NAM suite. Screenability was based on 3 main considerations: 1) (physico)chemical characteristics, 2) procurability and 3) out of scope due to existing NAM data. The physicochemical characteristics captured physical state at room temperature and pressure. These were inferred based on the OPERA predictions generated (see @sec-opera). Melting and boiling point thresholds as outlined in the [US EPA Sustainable Futures Program](https://www.epa.gov/sites/default/files/2015-05/documents/05-iad_discretes_june2013.pdf) were used to determine whether a substance was likely to be a solid, liquid or gas at room temperature and pressure. Volatility was modelled using vapour pressure (VP). If a substance had a logVP less than 2 mmHg, then it was considered screenable in aqueous screening assays. The Lipinski rule of 5 [@lipinski_2001] uses simple heuristics to denote oral absorption namely LogP \<5, MW \<500 and Hydrogen bond donor or acceptors (\< 10 or \<5). If any of these criteria are unmet, this is referred to as a Lipinski failure. For the purposes of this study, if the number of Lipinski failures was less than 3, than a substance was considered screenable. Certain elements present challenges to stability in solvent for analytical verification. Only substances containing the following elements, C, H, N, O, P, S, Halogens and Si when not adjacent to an O, were tagged for consideration. Procurability was estimated based on the number of vendors listed in \[PubChem\] (https://pubchem.ncbi.nlm.nih.gov/) for a given substance. The vendor count needed to be at greater than 1. Out of scope referred to the substance having already been tested in the ToxCast screening programme. Considering all these aspects, the landscape was filtered to only retain substances that were tagged as screenable. For this set of substances, medoids and MaxMin substances were also identified using the same approach as already described in @sec-maxmin.
+The landscape was constrained to only consider substances that were potentially screenable in the NAM suite. Screenability was based on 3 main considerations: 1) (physico)chemical characteristics, 2) procurability and 3) out of scope due to existing NAM data. The physicochemical characteristics captured physical state at room temperature and pressure. These were inferred based on the OPERA predictions generated (see @sec-opera). Melting and boiling point thresholds as outlined in the [US EPA Sustainable Futures Program](https://www.epa.gov/sites/default/files/2015-05/documents/05-iad_discretes_june2013.pdf) were used to determine whether a substance was likely to be a solid, liquid or gas at room temperature and pressure. Volatility was modelled using vapour pressure (VP). If a substance had a logVP less than 2 mmHg, then it was considered screenable in aqueous screening assays. The Lipinski rule of 5 [@lipinski_2001] uses simple heuristics to denote oral absorption namely LogP \<5, MW \<500 and Hydrogen bond donor or acceptors (\< 10 or \<5). If any of these criteria are unmet, this is referred to as a Lipinski failure. For the purposes of this study, if the number of Lipinski failures was less than 3, than a substance was considered screenable. Certain elements present challenges to stability in solvent for analytical verification. Only substances containing the following elements, C, H, N, O, P, S, Halogens and Si when not adjacent to an O, were tagged for consideration. Procurability was estimated based on the number of vendors listed in [PubChem](https://pubchem.ncbi.nlm.nih.gov/) for a given substance. The vendor count needed to be at greater than 1. Out of scope referred to the substance having already been tested in the ToxCast screening programme. Considering all these aspects, the landscape was filtered to only retain substances that were tagged as screenable. For this set of substances, medoids and MaxMin substances were also identified using the same approach as already described in @sec-maxmin.
 
 ## Other considerations
 
@@ -140,9 +140,13 @@ Aside from selection of representative substances from the full and constrained 
 
 T-distributed Stochastic Neighbor Embedding(t-SNE) [@maaten_2008] was performed using Morgan fingerprints computed for all the chemicals in the TSCA landscape. This was plotted as a scatterplot and colour coded by 1) screenability considerations and 2) the selection of candidate substances. The intention was to visually compare how representative the screenable and/or candidate selections were from a structural perspective relative to the TSCA landscape. In addition, 2D boxplots were created to compare the distribution of selected predicted physicochemical parameters of the TSCA landscape chemicals relative to that of the selected candidates.
 
-### Predicted Structural Alert Profile
+### Predicted Structural Alert Profile using Derek Nexus
 
 The entire set of TSCA landscape chemicals were profiled through the Derek Nexus 2.5 system to generate structural alerts using default settings. The following endpoints were included for structure alert generation: carcinogenicity, genotoxicity, irritation, neurotoxicity, organ toxicity, reproductive toxicity, respiratory sensitisation, skin sensitisation and miscellaneous endpoints (such as chloracne, methaemogloneaemia, blood in urine). The output was processed and aggregated so that a structural alert fingerprint representation was constructed indicating binary presence or absence of that alert for a given substance. The fingerprint representations were explored through the lens of the terminal categories 1) to visually evaluate the consistency in the alert profiles across a category and 2) to identify what endpoints were overrepresented in specific categories.
+
+### Predicted Structural Alert Profile using the OECD Toolbox
+
+Selected profilers available within the OECD Toolbox v4.6 were used to screen the entire set of TSCA landscape chemicals (as parents) for potential alerts. The profilers selected were acute oral toxicity, the carcinogenicity alerts by ISS, the DART scheme from Procter & Gamble, the various OECD and OASIS alerts for DNA and protein binding, the Estrogen and retinoic acid receptor binding, Eye and Skin irritation/corrosion inclusion rules. For each profiler, the corresponding Toolbox output provides the specific structural alert(s) flagged for a given chemical in each case. This was transformed into a fingerprint representation such that a new matrix was constructed where all endpoint-alerts combinations formed columns and each cell was populated with a 1 or 0 to indicate presence or absence of that endpoint-alert combination. This format could then be evaluated through the perspective of the terminal categories 1) to visually evaluate the consistency in the alert profiles across a category and 2) to identify what endpoints were overrepresented in specific categories.
 
 ### Predicted Toxicity Profile
 
@@ -150,7 +154,7 @@ Consensus predictions of the entire landscape were made using the Toxicity Estim
 
 ### Predicted ToxCast Profile
 
-Using a deep learning graph attention mechanism network developed in Adams et al, *in preparation*, predictions were made for the TSCA landscape to profile the likely NAM profile with respect to a multi-component assay platform within ToxCast. Selected assays focused on one assay platform, Attagene (ATG), which provides a multiplexed read-out of transcription factor activity for a number of receptors transformed into HepG2 cells [@medvedev\_2018]. A multi-task graph based approach as implemented within the DeepChem python library was used to develop the model that predicted the probability of a substance resulting in a positive hitcall.
+Using a deep learning graph attention mechanism network developed in Adams et al, *in preparation*, predictions were made for the TSCA landscape to profile the likely NAM profile with respect to a multi-component assay platform within ToxCast. Selected assays focused on one assay platform, Attagene (ATG), which provides a multiplexed read-out of transcription factor activity for a number of receptors transformed into HepG2 cells [@medvedev_2018]. A multi-task graph based approach as implemented within the DeepChem python library was used to develop the model that predicted the probability of a substance resulting in a positive hitcall.
 
 ### Availability of *in vivo* toxicity data within terminal categories
 
@@ -558,6 +562,42 @@ sns.clustermap(new_df,
                # Label for colorbar
                method='average')  # Method for hierarchical clustering
 ```
+
+## Profiling structural alerts from the OECD Toolbox
+
+OECD Toolbox profiling outcomes were generated for 12,085 substances from the TSCA landscape and summarised in a bit vector format so that each substance was associated with a fingerprint made up of all possible endpoint-alert combinations present. There were 2796 unique end-point-toxicophore combinations encompassing 26 different profilers which captured 11 main endpoints (nuclear receptor binding (retinoic acid and estrogen receptor binding), acute oral toxicity, respiratory uncouplers, systemic toxicity, genotoxicity, skin and respiratory sensitisation, carcinogenicity, developmental & reproductive toxicity, skin and eye irritation). The 318 substances (of which only 276 were associated with outcomes from the Toolbox) flagged 618 of these endpoint-alert combinations encompassing all 11 endpoints.
+
+Pairwise distance matrices of the Derek fingerprints were computed to explore the extent to which there was consistency in alert profile across each terminal category. Four terminal categories are illustrated in @fig-toolbox to show the extent to which alert profiles varied.
+
+```{python}
+import pickle
+
+dists = pickle.load(open(interim_dir+ "dists_toolbx_250624.pkl", "rb" ) )
+```
+
+
+```{python}
+#| label: fig-toolbox
+#| fig-cap: Heatmap of the pairwise distance matrices of selected terminal categories
+
+
+f, ax = plt.subplots(2,2, figsize = (20,20))
+sns.heatmap(dists["('Pyridines and derivatives', 1.0)"], cmap = 'coolwarm', ax = ax[0,0])
+sns.heatmap(dists["('Benzene and substituted derivatives', 9.0)"], cmap = 'coolwarm', ax = ax[0,1])
+sns.heatmap(dists["('Quinolines and derivatives', 3.0)"], cmap = 'coolwarm', ax = ax[1,0])
+sns.heatmap(dists["('Lactones', nan)"], cmap = 'coolwarm', ax = ax[1,1])
+
+
+ax[0,0].text(-7.5,0.5, "(a)", horizontalalignment='left', size='large', color='black', )
+ax[0,1].text(-40,1, "(b)", horizontalalignment='left', size='large', color='black', )
+ax[1,0].text(-5.5, 0.75, "(c)", horizontalalignment='left', size='large', color='black', )
+ax[1,1].text(-18,1, "(d)", horizontalalignment='left', size='large', color='black', );
+```
+
+@fig-toolbox (a - d) represent terminal categories ('Pyridines and derivatives', 1.0), ('Benzene and substituted derivatives', 9.0), ('Benzene and substituted derivatives', 9.0) and ('Lactones', nan) respectively.
+
+
+
 
 ## Profiling toxicity predictions from TEST
 
