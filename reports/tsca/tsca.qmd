@@ -120,17 +120,25 @@ The landscape was constrained to only consider substances that were potentially 
 
 Aside from selection of representative substances from the full and constrained landscapes on the basis of the outlined considerations, several other aspects were also used to inform the final selection process. Analytical method detection amenability predictions for liquid-chromatography mass spectrometry (LM-MS) were generated using the QSAR model developed by Lowe et al. [@lowe_2021] to provide an indication of which chemicals lent themselves to aqueous-based screening. Structural considerations based on lists of substances on the Dashboard known to be potentially explosive or highly reactive were also tagged. Category membership size was another consideration - size bins were set at less than 20 members, between 20-70, between 70-150, between 150-300 and finally between 300-600. A final manual check was performed to review all proposed candidate substances for testing following application of all the aforementioned considerations. @tbl-constrained summarises the considerations defining the constrained landscape.
 
-|                                     |                                           |                                                                                                                                                       |
-|:-------------------:|:---------------------:|:--------------------------:|
-|            Physical form            |                  Liquid                   |                                                             melting point $\leq$ 20 &degC                                                             |
-|                                     |                   Solid                   |                                                melting point \> 20 &degC and boiling point \>20 &degC                                                 |
-|           Vapour pressure           |       Non-volatile to semi-volatile       |                                                              vapour pressure \< 100 mmHg                                                              |
-|          Lipinski's Rules           |               Failures \< 3               | Lipinski's rules denote likely oral absorption based on LogP \<, MW \< 500 and Hydrogen bond donor or acceptors (\< 10 or \< 5). 2 failures permitted |
-|        Stability in solvent         |      Based on elemental composition       |                              Substances with atoms including C, H, N, O, P, S, Halogens and Si when not adjacent to an O                              |
-|            Procurability            |         PubChem vendor count \> 1         |                                              More likely to be able to purchase the candidate substance                                               |
-|           *in vitro* data           |          Not previously screened          |                                                  No existing *in vitro* bioactivity data in ToxCast                                                   |
-|         Laboratory handling         | Exclude reactive and explosive substances |                                            Identified by manual review and association with chemical lists                                            |
-| Amenability to analytical detection |             LC-MS amenability             |  Not used as a filtering criterion but generated to understand whether at least half of the chemical substance candidates would be amenable to LC-MS  |
++:-----------------------------------:+:-----------------------------------------:+:-----------------------------------------------------------------------------------------------------------------------------------------------------:+
+| Physical form                       | Liquid                                    | melting point $\leq$ 20 &degC                                                                                                                         |
++-------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                     | Solid                                     | melting point \> 20 &degC and boiling point \>20 &degC                                                                                                |
++-------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Vapour pressure                     | Non-volatile to semi-volatile             | vapour pressure \< 100 mmHg                                                                                                                           |
++-------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Lipinski's Rules                    | Failures \< 3                             | Lipinski's rules denote likely oral absorption based on LogP \<, MW \< 500 and Hydrogen bond donor or acceptors (\< 10 or \< 5). 2 failures permitted |
++-------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Stability in solvent                | Based on elemental composition            | Substances with atoms including C, H, N, O, P, S, Halogens and Si when not adjacent to an O                                                           |
++-------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Procurability                       | PubChem vendor count \> 1                 | More likely to be able to purchase the candidate substance                                                                                            |
++-------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+| *in vitro* data                     | Not previously screened                   | No existing *in vitro* bioactivity data in ToxCast                                                                                                    |
++-------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Laboratory handling                 | Exclude reactive and explosive substances | Identified by manual review and association with chemical lists                                                                                       |
++-------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Amenability to analytical detection | LC-MS amenability                         | Not used as a filtering criterion but generated to understand whether at least half of the chemical substance candidates would be amenable to LC-MS   |
++-------------------------------------+-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 : Properties associated with amenability to screening. OPERA predicted physicochemical properties and other indicators used to identify chemical substance candidates for aqueous-based screening. {#tbl-constrained}
 
@@ -138,15 +146,11 @@ Aside from selection of representative substances from the full and constrained 
 
 ### Physicochemical Comparison
 
-T-distributed Stochastic Neighbor Embedding(t-SNE) [@maaten_2008] was performed using Morgan fingerprints computed for all the chemicals in the TSCA landscape. This was plotted as a scatterplot and colour coded by 1) screenability considerations and 2) the selection of candidate substances. The intention was to visually compare how representative the screenable and/or candidate selections were from a structural perspective relative to the TSCA landscape. In addition, 2D boxplots were created to compare the distribution of selected predicted physicochemical parameters of the TSCA landscape chemicals relative to that of the selected candidates.
+T-distributed Stochastic Neighbor Embedding (t-SNE) [@maaten_2008] was performed using Morgan fingerprints computed for all the chemicals in the TSCA landscape. This was plotted as a scatterplot and colour coded by 1) screenability considerations and 2) the selection of candidate substances. The intention was to visually compare how representative the screenable and/or candidate selections were from a structural perspective relative to the TSCA landscape. In addition, 2D boxplots were created to compare the distribution of selected predicted physicochemical parameters of the TSCA landscape chemicals relative to that of the selected candidates.
 
-### Predicted Structural Alert Profile using Derek Nexus
+### Predicted Toxicity Profile using VEGA
 
-The entire set of TSCA landscape chemicals were profiled through the Derek Nexus 2.5 system to generate structural alerts using default settings. The following endpoints were included for structure alert generation: carcinogenicity, genotoxicity, irritation, neurotoxicity, organ toxicity, reproductive toxicity, respiratory sensitisation, skin sensitisation and miscellaneous endpoints (such as chloracne, methaemogloneaemia, blood in urine). The output was processed and aggregated so that a structural alert fingerprint representation was constructed indicating binary presence or absence of that alert for a given substance. The fingerprint representations were explored through the lens of the terminal categories 1) to visually evaluate the consistency in the alert profiles across a category and 2) to identify what endpoints were overrepresented in specific categories.
-
-### Predicted Structural Alert Profile using the OECD Toolbox
-
-Selected profilers available within the OECD Toolbox v4.6 were used to screen the entire set of TSCA landscape chemicals (as parents) for potential alerts. The profilers selected were acute oral toxicity, the carcinogenicity alerts by ISS, the DART scheme from Procter & Gamble, the various OECD and OASIS alerts for DNA and protein binding, the Estrogen and retinoic acid receptor binding, Eye and Skin irritation/corrosion inclusion rules. For each profiler, the corresponding Toolbox output provides the specific structural alert(s) flagged for a given chemical in each case. This was transformed into a fingerprint representation such that a new matrix was constructed where all endpoint-alerts combinations formed columns and each cell was populated with a 1 or 0 to indicate presence or absence of that endpoint-alert combination. This format could then be evaluated through the perspective of the terminal categories 1) to visually evaluate the consistency in the alert profiles across a category and 2) to identify what endpoints were overrepresented in specific categories.
+Predictions were generated using the VEGA QSAR Application v.1.2.3 for all human health related endpoints. Those endpoints that gave rise to binary outcomes were carried forward in the analysis to create a fingerprint representation of all 24 endpoint-model combinations for a given chemical. The endpoints considered were Ames mutagenicity, Developmental toxicity, Carcinogenicity, Skin sensitisation, Skin and eye irritation, *in vitro* and *in vivo* micronucleus activity and hepatoxicity. Some endpoints comprised 2 or more models (developmental toxicity) whereas others such as hepatoxicity comprised a single model. This fingerprint representation was evaluated from the perspective of the terminal categories 1) to visually evaluate the consistency in the toxicity profiles across a category and 2) to identify what endpoints were overrepresented in specific categories.
 
 ### Predicted Toxicity Profile
 
@@ -154,7 +158,7 @@ Consensus predictions of the entire landscape were made using the Toxicity Estim
 
 ### Predicted ToxCast Profile
 
-Using a deep learning graph attention mechanism network developed in Adams et al, *in preparation*, predictions were made for the TSCA landscape to profile the likely NAM profile with respect to a multi-component assay platform within ToxCast. Selected assays focused on one assay platform, Attagene (ATG), which provides a multiplexed read-out of transcription factor activity for a number of receptors transformed into HepG2 cells [@medvedev_2018]. A multi-task graph based approach as implemented within the DeepChem python library was used to develop the model that predicted the probability of a substance resulting in a positive hitcall.
+Using a deep learning graph attention mechanism network developed in Adams et al, *submitted*, predictions were made for the TSCA landscape to profile the likely NAM profile with respect to a multi-component assay platform within ToxCast. Selected assays focused on one assay platform, Attagene (ATG), which provides a multiplexed read-out of transcription factor activity for a number of receptors transformed into HepG2 cells [@medvedev_2018]. A multi-task graph based approach as implemented within the DeepChem python library was used to develop the model that predicted the probability of a substance resulting in a positive hitcall.
 
 ### Availability of *in vivo* toxicity data within terminal categories
 
@@ -277,7 +281,7 @@ Although medoids were selected as the most representative substance from each te
 
 ## Diverse substance selection: constrained landscape
 
-The TSCA landscape was filtered to only consider substances that could be potentially procured based on an inference that substances with greater than 1 vendor indexed in Pubchem were more likely to be procurable; was of the appropriate physical form (based on melting point and boiling point considerations); met the element conditions already outlined; was not likely to be volatile; had less than 3 Lipinski failures; and had not been tested in the ToxCast assays previously (see @tbl-constrained). Based on these considerations, 7565 substances (out of the original 14,247) were tagged as potentially amenable to screening for NAM assays spanning 160 (89%) of the 180 terminal categories. The categories excluded for screenability were largely organometallics, inorganics or mixed metal/non-metal compounds. 
+The TSCA landscape was filtered to only consider substances that could be potentially procured based on an inference that substances with greater than 1 vendor indexed in Pubchem were more likely to be procurable; was of the appropriate physical form (based on melting point and boiling point considerations); met the element conditions already outlined; was not likely to be volatile; had less than 3 Lipinski failures; and had not been tested in the ToxCast assays previously (see @tbl-constrained). Based on these considerations, 7565 substances (out of the original 14,247) were tagged as potentially amenable to screening for NAM assays spanning 160 (89%) of the 180 terminal categories. The categories excluded for screenability were largely organometallics, inorganics or mixed metal/non-metal compounds.
 
 A total of 438 diverse substances were selected as a result of the MaxMin approach being applied to 146 of the 160 terminal categories. The terminal categories where a MaxMin approach was not performed due to their limited membership are listed in @tbl-nomaxmin.
 
@@ -385,20 +389,33 @@ plt.setp(ax[0].xaxis.get_majorticklabels(), rotation=60, ha="right")
 plt.tight_layout();
 ```
 
-## Predicted structural alert profile
+## Predicted toxicity profile from VEGA
 
-Derek Nexus predictions were made for all TSCA landscape substances and summarised in a bit vector format so that each substance was associated with a fingerprint made up of all possible endpoint-toxicophores present. There were 619 unique end-point-toxicophore combinations encompassing 53 different endpoints. The 318 substances identified flagged 217 of these end-point-toxicophore combinations encompassing 36 different endpoints (68% of the endpoints).
+VEGA predictions were feasible for 12,928 substances of the TSCA landscape substances. These were summarised in a bit vector format so that each substance was associated with a fingerprint made up of all possible endpoint-models present. There were 24 endpoint-model combinations encompassing 9 different endpoints. 297 of the 318 picked substances were included in this set. They were associated with positive predictions across all of the 24 endpoint-model positive predictions. @fig-vega shows the percentage of positive predictions across the picked substances compared with the full TSCA landscape highlighting that the picked substances cover the full scan of the endpoints captured though are typically overrepresented.
 
-Pairwise distance matrices of the Derek fingerprints were computed to explore the extent to which there was consistency in alert profile across each terminal category. Four terminal categories are illustrated in @fig-derek to show the extent to which alert profiles varied.
+```{python}
+#| label: fig-vega
+#| fig-cap: Percentage of positive predictions across the full and candidate set
+result = pd.read_csv(interim_dir+'vega_props.csv')
+
+(result
+ .rename(columns = {'Unnamed: 1': "VEGA percentage counts", 'Unnamed: 0': 'Endpoint-Model'})
+ .pivot(index = 'Endpoint-Model', columns = 'VEGA percentage counts', values = '0')
+ .drop('final_picks')
+ .plot(kind = 'barh').legend(loc = 'best', bbox_to_anchor=(1, 1))
+);
+```
+
+Pairwise distance matrices of the VEGA fingerprints were then computed to explore the extent to which there was consistency in endpoint-model profile across each terminal category. Four terminal categories are illustrated in @fig-vega1 to show the extent to which profiles varied.
 
 ```{python}
 import pickle
 
-dists = pickle.load(open(interim_dir+ "dists_derek_041223.pkl", "rb" ) )
+dists = pickle.load(open(interim_dir+ "dists_vega_250624.pkl", "rb" ) )
 ```
 
 ```{python}
-#| label: fig-derek
+#| label: fig-vega1
 #| fig-cap: Heatmap of the pairwise distance matrices of selected terminal categories
 
 
@@ -415,10 +432,10 @@ ax[1,0].text(-5.5, 0.75, "(c)", horizontalalignment='left', size='large', color=
 ax[1,1].text(-18,1, "(d)", horizontalalignment='left', size='large', color='black', );
 ```
 
-@fig-derek (a - d) represent terminal categories ('Pyridines and derivatives', 1.0), ('Benzene and substituted derivatives', 9.0), ('Benzene and substituted derivatives', 9.0) and ('Lactones', nan) respectively.
+@fig-vega1 (a - d) represent terminal categories ('Pyridines and derivatives', 1.0), ('Benzene and substituted derivatives', 9.0), ('Benzene and substituted derivatives', 9.0) and ('Lactones', nan) respectively.
 
 ```{python}
-#| label: fig-derek-clust
+#| label: fig-vega-clust
 #| fig-cap: Clustermap of the (Pyridines and derivatives', 1.0) terminal category
 
 import warnings
@@ -430,18 +447,22 @@ g = sns.clustermap(dists["('Pyridines and derivatives', 1.0)"], row_linkage=link
 ```
 
 ```{python}
-clusters_df = pd.read_csv(interim_dir+'pyridines_derivs.csv', index_col = [0])
+clusters_df = pd.read_csv(interim_dir+'vega_pyridines_deriv.csv', index_col = [0])
 ```
 
-For terminal category ('Pyridines and derivatives', 1.0), there are at least 3 clusters of substances (@fig-derek-clust) which shared a common alert profile as shown in @tbl-pyridines. On the otherhand, there were at least 4 clusters (@fig-derek-dend) within terminal category ('Quinolines and derivatives', 3.0) which shared common alert endpoint profiles as shown in @tbl-quinolines.
+For terminal category ('Pyridines and derivatives', 1.0), there are at least 3 clusters of substances (@fig-vega-clust) which shared a common alert profile as shown in @tbl-pyridines. All three clusters shared commonality in hepatotoxicity, carcinogenicity and skin sensitisation whereas in cluster 1, skin irritation features vs in cluster 2 eye irritation and developmental toxicity were more prominent endpoints. On the otherhand, there were at least 4 clusters (@fig-vega-dend) within terminal category ('Quinolines and derivatives', 3.0) which shared common endpoint profiles as shown in @tbl-quinolines. Hepatotoxicity featured in all 4 clusters as did carcinogenicity but skin sensitisation was only an endpoint of concern in cluster 2 and Ames mutagenicity was only an endpoint of concern in cluster 1.
 
-| cluster number |                                                                                          alerts                                                                                          |
-|:------------------:|:--------------------------------------------------:|
-|       1        | '('Carcinogenicity mammal', 'Di- to poly-halogenated alkane')', '('Hepatotoxicity mammal', '2-Halopyridine')','('Mutagenicity in vitro bacterium', 'Trichloromethyl aromatic compound')' |
-|       2        |                                              '('Hepatotoxicity mammal', '2-Halopyridine')','('Nephrotoxicity mammal', 'Aromatic nitrile')'                                               |
-|       3        |                                       '('Hepatotoxicity mammal', '2-Halopyridine')','('Skin irritation/corrosion mammal', 'Pyridine or analogue')'                                       |
++----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cluster number | endpoint-model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
++:==============:+:=======================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================:+
+| 1              | Mutagenicity (Ames test) CONSENSUS model-prediction','Developmental Toxicity model (CAESAR)-prediction', 'Carcinogenicity model (CAESAR)-prediction', 'Carcinogenicity model (ISS)-prediction', 'Carcinogenicity model (IRFMN-ISSCAN-CGX)-prediction', 'Carcinogenicity model (IRFMN-Antares)-prediction', 'Carcinogenicity oral classification model (IRFMN)-prediction', 'Skin Sensitization model (CAESAR)-prediction', 'Skin Sensitization model (IRFMN-JRC)-prediction', 'Skin Sensitization model (NCSTOX)-prediction', 'Skin Sensitization model (TOXTREE)-prediction', 'Skin Sensitization (CONCERT/Kode)-prediction', 'Skin Irritation (CONCERT/Coral)-prediction', 'Skin Irritation model (CONCERT/SarPy)-prediction', 'In vitro Micronucleus activity (IRFMN-VERMEER)-prediction', 'Hepatotoxicity model (IRFMN)-prediction' |
++----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 2              | | 'Developmental Toxicity model (CAESAR)-prediction', 'Developmental/Reproductive Toxicity library (PG)-prediction', 'Carcinogenicity model (IRFMN-ISSCAN-CGX)-prediction', 'Carcinogenicity oral classification model (IRFMN)-prediction', 'Carcinogenicity inhalation classification model (IRFMN)-prediction', 'Skin Sensitization model (CAESAR)-prediction', 'Skin Sensitization model (IRFMN-JRC)-prediction', 'Skin Sensitization model (NCSTOX)-prediction', 'Skin Sensitization model (TOXTREE)-prediction', 'Skin Sensitization (CONCERT/Kode)-prediction', 'Eye Irritation (CONCERT/Kode)-prediction', 'In vitro Micronucleus activity (IRFMN-VERMEER)-prediction', 'Hepatotoxicity model (IRFMN)-prediction'                                                                                                                |
++----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 3              | | 'Developmental Toxicity model (CAESAR)-prediction', 'Carcinogenicity model (CAESAR)-prediction', 'Carcinogenicity model (IRFMN-ISSCAN-CGX)-prediction', 'Carcinogenicity model (IRFMN-Antares)-prediction', 'Carcinogenicity oral classification model (IRFMN)-prediction', 'Skin Sensitization model (CAESAR)-prediction', 'Skin Sensitization model (IRFMN-JRC)-prediction', 'Skin Sensitization model (NCSTOX)-prediction', 'Skin Sensitization model (TOXTREE)-prediction', 'Skin Sensitization (CONCERT/Kode)-prediction', 'In vitro Micronucleus activity (IRFMN-VERMEER)-prediction', 'Hepatotoxicity model (IRFMN)-prediction'                                                                                                                                                                                                |
++----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-: Alert profiles for terminal category ('Pyridines and derivatives', 1.0) {#tbl-pyridines}
+: VEGA profiles for terminal category ('Pyridines and derivatives', 1.0) {#tbl-pyridines}
 
 ```{python}
 linkage_c = hc.linkage(sp.distance.squareform(dists["('Quinolines and derivatives', 3.0)"]), method='ward')
@@ -453,7 +474,7 @@ from scipy.cluster.hierarchy import dendrogram, linkage
 
 ```{python}
 
-#| label: fig-derek-dend
+#| label: fig-vega-dend
 #| fig-cap: Clustermap of the ('Quinolines and derivatives', 3.0) terminal category
 #| 
 plt.figure(figsize=(9, 6))
@@ -467,17 +488,22 @@ plt.show()
 ```
 
 ```{python}
-clusters_c_df = pd.read_csv(interim_dir+'quinolines_derivs.csv')
+clusters_c_df = pd.read_csv(interim_dir+'vega_quinolines_derivs.csv', index_col = [0])
 ```
 
-| cluster number |                                                                                                                                                                                               alerts                                                                                                                                                                                               |
-|:-------------------:|:-------------------------------------------------:|
-|       1        | '('Carcinogenicity mammal', 'Aromatic amine or amide')', '('Hepatotoxicity mammal', 'Quinoline')','('Mutagenicity in vitro bacterium', 'Aromatic amine or amide')', '('Mutagenicity in vitro bacterium', 'Quinoline')','('Mutagenicity in vivo mammal', 'Aromatic amine or amide')', '('Mutagenicity in vivo mammal', 'Quinoline')','('Skin irritation/corrosion mammal', 'Pyridine or analogue')' |
-|       2        |                                                                                ('Androgen receptor modulation mammal', 'Quinoline or analogue')','('Mutagenicity in vitro bacterium', 'Quinoline')', '('Mutagenicity in vivo mammal', 'Quinoline')','('Skin irritation/corrosion mammal', 'Pyridine or analogue')'                                                                                 |
-|       3        |                        '('Carcinogenicity mammal', 'Aromatic nitroso compound')','('Carcinogenicity mammal', 'Polyhalogenated aromatic')', '('Mutagenicity in vitro bacterium', 'Aromatic nitroso compound')', '('Mutagenicity in vitro bacterium', 'Quinoline')', '('Mutagenicity in vivo mammal', 'Quinoline')', '('Thyroid toxicity mammal', 'Aromatic iodo compound')'                         |
-|       4        |                                          '('Carcinogenicity mammal', '4-Aminobiphenyl, benzidine, naphthylamine or precursors')','('Carcinogenicity mammal', 'Aromatic azo compound')','('Mutagenicity in vitro bacterium', 'Aromatic azo compound')', '('Mutagenicity in vitro bacterium', 'Quinoline')','('Mutagenicity in vivo mammal', 'Quinoline')'                                           |
++-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cluster number  | alerts                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
++:===============:+:===========================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================:+
+| 1               | 'Mutagenicity (Ames test) CONSENSUS model-prediction','Developmental Toxicity model (CAESAR)-prediction', 'Carcinogenicity model (IRFMN-ISSCAN-CGX)-prediction', 'Carcinogenicity oral classification model (IRFMN)-prediction', 'Carcinogenicity inhalation classification model (IRFMN)-prediction', 'Skin Sensitization model (CAESAR)-prediction', 'Skin Sensitization model (IRFMN-JRC)-prediction', 'Skin Sensitization (CONCERT/Kode)-prediction', 'Hepatotoxicity model (IRFMN)-prediction'                                                                                                                                                                                                                                                                                                                                                                                                                         |
++-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 2               | | 'Mutagenicity (Ames test) CONSENSUS model-prediction', 'Developmental Toxicity model (CAESAR)-prediction', 'Developmental/Reproductive Toxicity library (PG)-prediction', 'Carcinogenicity model (CAESAR)-prediction', 'Carcinogenicity model (ISS)-prediction', 'Carcinogenicity model (IRFMN-ISSCAN-CGX)-prediction', 'Carcinogenicity oral classification model (IRFMN)-prediction', 'Carcinogenicity inhalation classification model (IRFMN)-prediction', 'Skin Sensitization model (CAESAR)-prediction', 'Skin Sensitization model (IRFMN-JRC)-prediction', 'Skin Sensitization model (NCSTOX)-prediction', 'Skin Sensitization (CONCERT/Kode)-prediction', 'Skin Sensitization (CONCERT/SarPy)-prediction', 'Eye Irritation (CONCERT/Kode)-prediction', 'In vitro Micronucleus activity (IRFMN-VERMEER)-prediction', 'In vivo Micronucleus activity (IRFMN)-prediction', 'Hepatotoxicity model (IRFMN)-prediction'  |
++-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 3               | | 'Mutagenicity (Ames test) CONSENSUS model-prediction', 'Developmental Toxicity model (CAESAR)-prediction', 'Carcinogenicity model (CAESAR)-prediction', 'Carcinogenicity model (ISS)-prediction', 'Carcinogenicity model (IRFMN-ISSCAN-CGX)-prediction', 'Carcinogenicity model (IRFMN-Antares)-prediction', 'Carcinogenicity oral classification model (IRFMN)-prediction', 'Carcinogenicity inhalation classification model (IRFMN)-prediction', 'Skin Sensitization model (CAESAR)-prediction', 'Skin Sensitization model (IRFMN-JRC)-prediction', 'Skin Sensitization model (NCSTOX)-prediction', 'Skin Sensitization model (TOXTREE)-prediction', 'Eye Irritation (CONCERT/Kode)-prediction', 'Eye Irritation (CONCERT/SarPy)-prediction', 'In vitro Micronucleus activity (IRFMN-VERMEER)-prediction', 'Hepatotoxicity model (IRFMN)-prediction'                                                                    |
++-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 4               | |  'Mutagenicity (Ames test) CONSENSUS model-prediction', 'Developmental Toxicity model (CAESAR)-prediction', 'Carcinogenicity model (CAESAR)-prediction', 'Carcinogenicity model (ISS)-prediction', 'Carcinogenicity model (IRFMN-ISSCAN-CGX)-prediction', 'Carcinogenicity oral classification model (IRFMN)-prediction', 'Carcinogenicity inhalation classification model (IRFMN)-prediction', 'Skin Sensitization model (CAESAR)-prediction', 'Skin Sensitization model (NCSTOX)-prediction', 'Skin Sensitization (CONCERT/Kode)-prediction', 'Skin Irritation model (CONCERT/SarPy)-prediction', 'Eye Irritation (CONCERT/Kode)-prediction', 'Eye Irritation (CONCERT/KNN)-prediction', 'In vitro Micronucleus activity (IRFMN-VERMEER)-prediction', 'In vivo Micronucleus activity (IRFMN)-prediction', 'Hepatotoxicity model (IRFMN)-prediction'                                                                     |
++-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-: Alert profiles for terminal category ('Quinolines and derivatives', 3.0) {#tbl-quinolines}
+: VEGA profiles for terminal category ('Quinolines and derivatives', 3.0) {#tbl-quinolines}
 
 ```{python}
 
@@ -490,67 +516,89 @@ from rdkit.Chem import Draw
 from PIL import Image
 import io
 
-#mols_cluster_1 = [Chem.MolFromSmiles(e) for e in clusters_df###[clusters_df['cluster_d'] == 1]['SMILES']]
-#mols_cluster_2 = [Chem.MolFromSmiles(e) for e in clusters_df[clusters_df['cluster_d'] == 2]['SMILES']]
+mols_cluster_1 = [Chem.MolFromSmiles(e) for e in clusters_df[clusters_df['cluster_d'] == 1]['SMILES']]
+mols_cluster_2 = [Chem.MolFromSmiles(e) for e in clusters_df[clusters_df['cluster_d'] == 2]['SMILES']]
 
-#img_cluster_1 = Draw.MolsToGridImage(mols_cluster_1) 
-#img_cluster_2 = Draw.MolsToGridImage(mols_cluster_2) 
-#png1 = img_cluster_1.data
-#png2 = img_cluster_2.data
+img_cluster_1 = Draw.MolsToGridImage(mols_cluster_1) 
+img_cluster_2 = Draw.MolsToGridImage(mols_cluster_2) 
+png1 = img_cluster_1.data
+png2 = img_cluster_2.data
 
-#with open('img_cluster_1.png','wb+') as outf:
-  #  outf.write(png1)
-#with open('img_cluster_2.png','wb+') as outf:
- #   outf.write(png2)
+with open('img_cluster_1.png','wb+') as outf:
+    outf.write(png1)
+with open('img_cluster_2.png','wb+') as outf:
+   outf.write(png2)
    
 
 ```
 
-
 The alert profiles may assist with refining understanding of predicted toxicity within these structure-based categories, which are constructed pragmatically but may group substances that have small but important structural differences that lead to different predictions. For instance, in (‘Pyridines and derivatives’, 1.0), there is a difference in prediction between substances that contain a CCl3 group versus other chemicals in the terminal category which are still highly chlorinated bit lack this particular group (@fig-pyridine-clust). Further, the alert profiles within the terminal categories may provide useful insights on the types of targets or toxicities to evaluate in the *in vitro* NAM assays.
 
-No structural alert cluster profiles were produced for 10 terminal categories - namely ('Allenes', nan), ('Anthracenes', 5.0), ('Azobenzenes', 1.0), ('Azobenzenes', 5.0), ('Azobenzenes', 6.0), ('Azoles', 3.0), ('Hydrocarbons', 1.0), ('Mixed metal/non-metal compounds', 5.0), ('Organic oxygen compounds', nan), and ('Phenylpropanoids and polyketides', 1.0). Of these, 4 terminal categories were not associated with any alerts highlighting either no potential issues or an absence of knowledge within Derek Nexus. The 4 categories were ('Hydrocarbons', 1.0), ('Mixed metal/non-metal compounds', 5.0), ('Phenylpropanoids and polyketides', 1.0) and ('Allenes', nan). ('Allenes', nan) had only 2 members and ('Mixed metal/non-metal compounds', 5.0) had 5 members - conceivably the low membership would limit the potential for an alert to be flagged whereas ('Phenylpropanoids and polyketides', 1.0) and ('Hydrocarbons', 1.0) had many more members, 14 and 50 respectively. Here the broader diversity in structures across the category might be more likely to trigger an alert if relevant. For the other 6 terminal categories, each was associated with a number of alerts as shown in @tbl-terms. For example, terminal category ('Anthracenes', 5) was associated with 8 alerts that were present all 17 members; 7 of these were related to the anthraquinone moiety. The endpoints associated with these 7 alerts were carcinogenicity, mutagenicity, chromosomal damage, nepthrotoxicity, hepatotoxicity and mitochondrial dysfunction.
+No structural alert cluster profiles were produced for 16 terminal categories - namely ('Allenes', nan), ('Anthracenes', 2.0), ('Anthracenes', 3.0), ('Anthracenes', 5.0), ('Azobenzenes', 1.0), ('Azobenzenes', 2.0), ('Azobenzenes', 5.0), ('Azobenzenes', 6.0), ('Azobenzenes', 7.0), ('Azoles', 3.0), ('Benzenoids', 5), ('Lignans, neolignans and related compounds', nan), ('Organic oxygen compounds', nan), ('Organoheterocyclic compounds', 2.0), ('Quinolines and derivatives', 1.0) and ('Quinolines and derivatives', 2.0).
 
-|         Terminal category         | Number of alerts | Membership size |
-|:---------------------------------:|:----------------:|:---------------:|
-|       ('Anthracenes', 5.0)        |        18        |       17        |
-|       ('Azobenzenes', 1.0)        |        9         |        7        |
-|       ('Azobenzenes', 5.0)        |        15        |       13        |
-|       ('Azobenzenes', 6.0)        |        21        |       23        |
-|          ('Azoles', 3.0)          |        13        |        4        |
-| ('Organic oxygen compounds', nan) |        9         |        6        |
+Of these, ('Allenes', nan), ('Azoles', 3.0) and ('Lignans, neolignans and related compounds', nan) all had low memberships (2,4,6 respectively) which might limit the potential for an prediction to be triggered. For the other 13 terminal categories, each was associated with a number of positive endpoint-model predictions as shown in @tbl-terms. For example, terminal category ('Anthracenes', 5) was associated with 10 endpoint-models that were positive for all 16 members. The endpoints associated with these 10 model predictions were carcinogenicity, Ames mutagenicity, developmental toxicity, skin sensitisation, eye irritation and *in vitro* micronucleus activity.
 
-: Terminal categories that could not be clustered but were associated with many alerts {#tbl-terms}
++---------------------------------------+--------------------------------+-----------------+
+| Terminal category                     | Number of positive predictions | Membership size |
++:=====================================:+:==============================:+:===============:+
+| ('Anthracenes', 2.0)                  | 15                             | 11              |
++---------------------------------------+--------------------------------+-----------------+
+| ('Anthracenes', 3.0)                  | 18                             | 23              |
++---------------------------------------+--------------------------------+-----------------+
+| ('Anthracenes', 5.0)                  | 17                             | 16              |
++---------------------------------------+--------------------------------+-----------------+
+| ('Azobenzenes', 1.0)                  | 17                             | 6               |
++---------------------------------------+--------------------------------+-----------------+
+| ('Azobenzenes', 2.0)                  | 19                             | 16              |
++---------------------------------------+--------------------------------+-----------------+
+| ('Azobenzenes', 5.0)                  | 15                             | 13              |
++---------------------------------------+--------------------------------+-----------------+
+| ('Azobenzenes', 6.0)                  | 17                             | 23              |
++---------------------------------------+--------------------------------+-----------------+
+| ('Azobenzenes', 7.0)                  | 19                             | 15              |
++---------------------------------------+--------------------------------+-----------------+
+| ('Benzenoids', 5.0)                   | 13                             | 13              |
++---------------------------------------+--------------------------------+-----------------+
+| ('Organic oxygen compounds')          | 12                             | 6               |
++---------------------------------------+--------------------------------+-----------------+
+| ('Organoheterocyclic compounds', 2.0) | 17                             | 12              |
++---------------------------------------+--------------------------------+-----------------+
+| ('Quinolines and derivatives', 1.0)   | 15                             | 6               |
++---------------------------------------+--------------------------------+-----------------+
+| ('Quinolines and derivatives', 2.0)   | 17                             | 11              |
++---------------------------------------+--------------------------------+-----------------+
 
-For the remaining terminal categories, the maximum number of alerts was 101 for terminal category ('Benzene and substituted derivatives', 8.0) whereas the median number of alerts was 6 (see @fig-derek2).
+: Terminal categories that could not be clustered but were associated with many positive predictions {#tbl-terms}
+
+For the remaining terminal categories, the maximum number of positive predictions was 111 for terminal category ('Benzene and substituted derivatives', 2.0) whereas the median number of positive predictions was 9 (see @fig-vega3).
 
 ```{python}
-#| label: fig-derek2
-#| fig-cap: Distribution of Derek alert counts across terminal categories which were clustered
+#| label: fig-vega3
+#| fig-cap: Distribution of VEGA positive prediction counts across terminal categories which were clustered
 
-derek_counts = pd.read_csv(interim_dir+'derekalertcount_termcategories.csv', index_col = [0])
-derek_counts.plot(kind = 'hist')
-plt.xlabel('number of alerts');
+vega_counts = pd.read_csv(interim_dir+'vegacount_terminalcategories.csv', index_col = [0])
+vega_counts.plot(kind = 'hist')
+plt.xlabel('number of positive predictions');
 ```
 
-Profiling across all the substances in the landscape, the top 3 alerts that triggered the most substances were skin irritation/corrosion related with almost \~2000 substances presenting an alert. The next most frequent alerts were for carcinogenicity, hepatoxicity and mutagenicity endpoints, approx 450-550 substances flagged each of these. The mean number of substances presenting an alert was 50 with the median number of substances presenting an alert being 11. Overall the alert profile across the TSCA landscape was quite sparse in terms of the number of alerts flagged. A number of the alerts were highly correlated with each other e.g the same toxicophore present in 2 related endpoints, chromosome damage and Ames mutagence such that if a correlation threshold of 0.8 was used to filter out correlating alerts, up to 215 alerts could dropped from further consideration. A count of number of alerts across the 53 endpoints was summarised across the categories to gain a perspective of the relationship between categories and the endpoints that were triggered based on the alerts. @fig-alert-tox-hm shows a clustermap of the alert endpoints as a function of the terminal categories. For example, terminal categories containing benzene compounds and their derivatives or organohalogen compounds were typically associated with heptatoxicity, nephrotoxicity and carcinogenicity related endpoints. Categories with a zero count for the alerts may either because there is no knowledge within Derek or because those categories are potentially unlikely to be associated with toxicity effects.
+A count of number of positive predictions across the 12 endpoints was summarised across the categories to gain a perspective of the relationship between categories and the endpoints that were triggered based on the alerts. @fig-alert-tox-hm shows a clustermap of the alert endpoints as a function of the terminal categories. For example, terminal categories containing benzene compounds were typically associated with carcinogenicity, in vivo micronucleus and hepatotoxicity endpoints whereas organohalogen compounds or Quinoline and derivatives were associated with skin sensitisation.
 
 ```{python}
 import pandas as pd
 import seaborn as sns
-new_df= pd.read_csv(interim_dir+'derek_map.csv', index_col = [0])
+new_df= pd.read_csv(interim_dir+'vega_map.csv', index_col = [0])
 # Adjust the size according to your preference
 
 ```
 
 ```{python}
 #| label: fig-alert-tox-hm
-#| fig-cap: Distribution of Derek alert counts across terminal categories which were clustered
+#| fig-cap: Distribution of VEGA prediction counts across terminal categories which were clustered
 # Create the clustermap
 
 import warnings
 warnings.filterwarnings("ignore")
-sns.clustermap(new_df, 
+sns.clustermap(new_df.astype(float), 
                cmap='coolwarm',  # Choose the colormap
                figsize=(12,16),  # Figure size
                row_cluster=True,  # Cluster rows
@@ -563,45 +611,9 @@ sns.clustermap(new_df,
                method='average')  # Method for hierarchical clustering
 ```
 
-## Profiling structural alerts from the OECD Toolbox
-
-OECD Toolbox profiling outcomes were generated for 12,085 substances from the TSCA landscape and summarised in a bit vector format so that each substance was associated with a fingerprint made up of all possible endpoint-alert combinations present. There were 2796 unique end-point-toxicophore combinations encompassing 26 different profilers which captured 11 main endpoints (nuclear receptor binding (retinoic acid and estrogen receptor binding), acute oral toxicity, respiratory uncouplers, systemic toxicity, genotoxicity, skin and respiratory sensitisation, carcinogenicity, developmental & reproductive toxicity, skin and eye irritation). The 318 substances (of which only 276 were associated with outcomes from the Toolbox) flagged 618 of these endpoint-alert combinations encompassing all 11 endpoints.
-
-Pairwise distance matrices of the Derek fingerprints were computed to explore the extent to which there was consistency in alert profile across each terminal category. Four terminal categories are illustrated in @fig-toolbox to show the extent to which alert profiles varied.
-
-```{python}
-import pickle
-
-dists = pickle.load(open(interim_dir+ "dists_toolbx_250624.pkl", "rb" ) )
-```
-
-
-```{python}
-#| label: fig-toolbox
-#| fig-cap: Heatmap of the pairwise distance matrices of selected terminal categories
-
-
-f, ax = plt.subplots(2,2, figsize = (20,20))
-sns.heatmap(dists["('Pyridines and derivatives', 1.0)"], cmap = 'coolwarm', ax = ax[0,0])
-sns.heatmap(dists["('Benzene and substituted derivatives', 9.0)"], cmap = 'coolwarm', ax = ax[0,1])
-sns.heatmap(dists["('Quinolines and derivatives', 3.0)"], cmap = 'coolwarm', ax = ax[1,0])
-sns.heatmap(dists["('Lactones', nan)"], cmap = 'coolwarm', ax = ax[1,1])
-
-
-ax[0,0].text(-7.5,0.5, "(a)", horizontalalignment='left', size='large', color='black', )
-ax[0,1].text(-40,1, "(b)", horizontalalignment='left', size='large', color='black', )
-ax[1,0].text(-5.5, 0.75, "(c)", horizontalalignment='left', size='large', color='black', )
-ax[1,1].text(-18,1, "(d)", horizontalalignment='left', size='large', color='black', );
-```
-
-@fig-toolbox (a - d) represent terminal categories ('Pyridines and derivatives', 1.0), ('Benzene and substituted derivatives', 9.0), ('Benzene and substituted derivatives', 9.0) and ('Lactones', nan) respectively.
-
-
-
-
 ## Profiling toxicity predictions from TEST
 
-Predictions were generated for the developmental and Ames mutagenicity endpoints using TEST. Consensus predictions were available for 14,194 substances. To explore the coverage of positive/negative predictions across the landscape, t-SNE plots were generated to aid visualisation. @fig-test shows both endpoints. Positive developmental toxicity predictions were found to be quite evenly spread across the landscape whereas positive Ame results appear to cluster in some regions of the chemical space. To probe this a little more, the clustered region of positive predictions were overlaid relative to the terminal categories to start to gauge whether certain categories were visually overrepresented in positive Ames results (@fig-ames). 
+Predictions were generated for the developmental and Ames mutagenicity endpoints using TEST. Consensus predictions were available for 14,194 substances. To explore the coverage of positive/negative predictions across the landscape, t-SNE plots were generated to aid visualisation. @fig-test shows both endpoints. Positive developmental toxicity predictions were found to be quite evenly spread across the landscape whereas positive Ame results appear to cluster in some regions of the chemical space. To probe this a little more, the clustered region of positive predictions were overlaid relative to the terminal categories to start to gauge whether certain categories were visually overrepresented in positive Ames results (@fig-ames).
 
 ```{python}
 tsne_all_df = pd.read_csv(interim_dir+'tsne_all_df.csv', index_col = [0])
@@ -633,33 +645,55 @@ gss['ratio'] = gss['Mutagenicity Positive']/gss['Mutagenicity Negative']
 #gss.sort_values(by = 'ratio', ascending = False).head(10)
 ```
 
-| Terminal Category                   | Mutagenicity Negative | Mutagenicity Positive | Ratio |
-|-------------------|:----------------:|:----------------:|:----------------:|
-| ('Anthracenes', 3.0)                |          1.0          |         21.0          | 21.0  |
-| ('Anthracenes', 7.0)                |          1.0          |         15.0          | 15.0  |
-| ('Azobenzenes', 7.0)                |          1.0          |         13.0          | 13.0  |
-| ('Anthracenes', 9.0)                |          5.0          |         46.0          |  9.2  |
-| ('Quinolines and derivatives', 2.0) |          1.0          |          9.0          |  9.0  |
-| ('Anthracenes', 6.0)                |          2.0          |         18.0          |  9.0  |
-| ('Anthracenes', 4.0)                |          2.0          |         17.0          |  8.5  |
-| ('Anthracenes', 5.0)                |          2.0          |         14.0          |  7.0  |
-| ('Azobenzenes', 2.0)                |          3.0          |         11.0          | 3.67  |
-| ('Acetylides', nan)                 |          8.0          |         19.0          | 2.38  |
++-------------------------------------+-----------------------+-----------------------+--------------+
+| Terminal Category                   | Mutagenicity Negative | Mutagenicity Positive | Ratio        |
++=====================================+:=====================:+:=====================:+:============:+
+| ('Anthracenes', 3.0)                | 1.0                   | 21.0                  | 21.0         |
++-------------------------------------+-----------------------+-----------------------+--------------+
+| ('Anthracenes', 7.0)                | 1.0                   | 15.0                  | 15.0         |
++-------------------------------------+-----------------------+-----------------------+--------------+
+| ('Azobenzenes', 7.0)                | 1.0                   | 13.0                  | 13.0         |
++-------------------------------------+-----------------------+-----------------------+--------------+
+| ('Anthracenes', 9.0)                | 5.0                   | 46.0                  | 9.2          |
++-------------------------------------+-----------------------+-----------------------+--------------+
+| ('Quinolines and derivatives', 2.0) | 1.0                   | 9.0                   | 9.0          |
++-------------------------------------+-----------------------+-----------------------+--------------+
+| ('Anthracenes', 6.0)                | 2.0                   | 18.0                  | 9.0          |
++-------------------------------------+-----------------------+-----------------------+--------------+
+| ('Anthracenes', 4.0)                | 2.0                   | 17.0                  | 8.5          |
++-------------------------------------+-----------------------+-----------------------+--------------+
+| ('Anthracenes', 5.0)                | 2.0                   | 14.0                  | 7.0          |
++-------------------------------------+-----------------------+-----------------------+--------------+
+| ('Azobenzenes', 2.0)                | 3.0                   | 11.0                  | 3.67         |
++-------------------------------------+-----------------------+-----------------------+--------------+
+| ('Acetylides', nan)                 | 8.0                   | 19.0                  | 2.38         |
++-------------------------------------+-----------------------+-----------------------+--------------+
 
 : Top 10 terminal categories where the ratio between positive:negative exceeds 2 {#tbl-amesratio}
 
-| Terminal Category                                 | Developmental NON-toxicant | Developmental toxicant | Ratio |
-|-------------------|:----------------:|:----------------:|:----------------:|
-| ('Steroids and steroid derivatives', nan)         |            1.0             |          31.0          | 31.0  |
-| ('Phenylpropanoids and polyketides', 4.0)         |            6.0             |          96.0          | 16.0  |
-| ('Organic salts', nan)                            |            1.0             |          16.0          | 16.0  |
-| ('Phenol ethers', 3.0)                            |            1.0             |          15.0          | 15.0  |
-| ('Azolidines', 5.0)                               |            1.0             |          15.0          | 15.0  |
-| ('Azobenzenes', 3.0)                              |            2.0             |          28.0          | 14.0  |
-| ('Benzenoids', 2.0)                               |            1.0             |          12.0          | 12.0  |
-| ('Triphenyl compounds', nan)                      |            2.0             |          23.0          | 11.5  |
-| ('Diazines', 1.0)                                 |            3.0             |          32.0          | 10.67 |
-| ('Organic phosphoric acids and derivatives', 1.0) |            3.0             |          31.0          | 10.33 |
++---------------------------------------------------+----------------------------+------------------------+-------------+
+| Terminal Category                                 | Developmental NON-toxicant | Developmental toxicant | Ratio       |
++===================================================+:==========================:+:======================:+:===========:+
+| ('Steroids and steroid derivatives', nan)         | 1.0                        | 31.0                   | 31.0        |
++---------------------------------------------------+----------------------------+------------------------+-------------+
+| ('Phenylpropanoids and polyketides', 4.0)         | 6.0                        | 96.0                   | 16.0        |
++---------------------------------------------------+----------------------------+------------------------+-------------+
+| ('Organic salts', nan)                            | 1.0                        | 16.0                   | 16.0        |
++---------------------------------------------------+----------------------------+------------------------+-------------+
+| ('Phenol ethers', 3.0)                            | 1.0                        | 15.0                   | 15.0        |
++---------------------------------------------------+----------------------------+------------------------+-------------+
+| ('Azolidines', 5.0)                               | 1.0                        | 15.0                   | 15.0        |
++---------------------------------------------------+----------------------------+------------------------+-------------+
+| ('Azobenzenes', 3.0)                              | 2.0                        | 28.0                   | 14.0        |
++---------------------------------------------------+----------------------------+------------------------+-------------+
+| ('Benzenoids', 2.0)                               | 1.0                        | 12.0                   | 12.0        |
++---------------------------------------------------+----------------------------+------------------------+-------------+
+| ('Triphenyl compounds', nan)                      | 2.0                        | 23.0                   | 11.5        |
++---------------------------------------------------+----------------------------+------------------------+-------------+
+| ('Diazines', 1.0)                                 | 3.0                        | 32.0                   | 10.67       |
++---------------------------------------------------+----------------------------+------------------------+-------------+
+| ('Organic phosphoric acids and derivatives', 1.0) | 3.0                        | 31.0                   | 10.33       |
++---------------------------------------------------+----------------------------+------------------------+-------------+
 
 : Top 10 terminal categories where the ratio between positive:negative exceeds 10 {#tbl-devratio}
 
@@ -760,19 +794,15 @@ There were only 24 non-cancer and 32 reproductive/developmental PODs and for the
 
 # Conclusions
 
-A cheminformatics workflow was developed in an effort to identify a set of approximately 300 representative candidate case study chemicals from the TSCA landscape that could be used in screening with a range of different NAM approaches. A categorisation scheme making use of the ClassyFire ontology formed the basis of initial primary categories which were then subset into smaller more structurally similar categorises following hierarchical clustering. Since NAM testing was envisaged, the landscape was bounded by technical testing constraints in aqueous *in vitro* assays. Physicochemical properties, reactivity flags, procurabillity, category size and analytical method detection amenability considerations were used to subset a portion of the landscape from which substances could be identified for testing. A set of 318 substances were proposed that spanned 106 (\~59%) of the terminal categories. In general, the proposed 318 substances spanned the overall structural diversity of both the constrained and full landscape well. The physicochemical properties profile was similar for both the candidate substances and the landscape and the median potencies of the acute oral toxicity predictions between the TSCA landscape and candidate substances were also very similar. All these factors lend credence that the candidate set of substances were a reasonable and representative set of the broader TSCA landscape to the extent that it could be procured and tested. 
-Attention was then turned to exploring the TSCA landscape through the lens of the terminal categories constructed to gauge the bioactivities expected, the sorts of toxicity endpoints that were likely to be exhibited as well as their potencies. To summarise such insights network graphs were constructed to capture the associations between categories and their active responses in ToxCast assays, specific endpoints as flagged by Derek alerts (@fig-nx). The candidate substances for screening spanned a range of alerts and toxicity predictions, from zero to many, and in general were somewhat data-poor with respect to publicly available *in vivo* data from repeat dose or reproductive/developmental study data in the public domain. The use of a cheminformatic Tier 0 could help with more detailed toxicity profiling within terminal categories when data are not available in addition to being informative of portions of the TSCA chemical landscape that may be outside of the applicability domain for certain models or for which empirical *in vitro* data may be useful to confirm a bioactivity or toxicity along with an indication of potency.
+A cheminformatics workflow was developed in an effort to identify a set of approximately 300 representative candidate case study chemicals from the TSCA landscape that could be used in screening with a range of different NAM approaches. A categorisation scheme making use of the ClassyFire ontology formed the basis of initial primary categories which were then subset into smaller more structurally similar categorises following hierarchical clustering. Since NAM testing was envisaged, the landscape was bounded by technical testing constraints in aqueous *in vitro* assays. Physicochemical properties, reactivity flags, procurabillity, category size and analytical method detection amenability considerations were used to subset a portion of the landscape from which substances could be identified for testing. A set of 318 substances were proposed that spanned 106 (\~59%) of the terminal categories. In general, the proposed 318 substances spanned the overall structural diversity of both the constrained and full landscape well. The physicochemical properties profile was similar for both the candidate substances and the landscape and the median potencies of the acute oral toxicity predictions between the TSCA landscape and candidate substances were also very similar. All these factors lend credence that the candidate set of substances were a reasonable and representative set of the broader TSCA landscape to the extent that it could be procured and tested. Attention was then turned to exploring the TSCA landscape through the lens of the terminal categories constructed to gauge the bioactivities expected, the sorts of toxicity endpoints that were likely to be exhibited as well as their potencies. To summarise such insights network graphs were constructed to capture the associations between categories and their active responses in ToxCast assays, specific endpoints as flagged by VEGA predictions (@fig-nx). The candidate substances for screening spanned a range of alerts and toxicity predictions, from zero to many, and in general were somewhat data-poor with respect to publicly available *in vivo* data from repeat dose or reproductive/developmental study data in the public domain. The use of a cheminformatic Tier 0 could help with more detailed toxicity profiling within terminal categories when data are not available in addition to being informative of portions of the TSCA chemical landscape that may be outside of the applicability domain for certain models or for which empirical *in vitro* data may be useful to confirm a bioactivity or toxicity along with an indication of potency.
 
-::: {#fig-nx}
-![Network graph representation of primary categories and their predicted Derek endpoint and ToxCast assay outcome](derek_txcst_nx.png){#fig-nx1 fig-pos="H"} 
 
-Network graphs of primary categories and their predicted Derek endpoint and ToxCast assay outcome. The linkages show the associations between different ToxCast assays or toxicity endpoint (shown by the blue circles) and the terminal categories (shown by the green circles). For example, Benzene subitituted derivatives are associated with many endpoints including bone marrow toxicity, nephrotoxicity, mutagenicity, methaemoglobinaemia.
-:::
+![Network graph representation of primary categories and their predicted VEGA outcomes. Network graphs of primary categories and their predicted VEGA endpoint. The linkages show the associations between different toxicity endpoints (shown by the blue circles) and the terminal categories (shown by the green circles). For example, Epoxides are associated with several endpoints including skin irritation, mutagenicity, and skin sensitisation.](vega_nx.png){#fig-nx fig-pos="H"}
 
-From these representations, such insights as to which categories are typically associated with a specific outcome or an array of outcomes can be more readily identified which are informative for prioritisation efforts.
+
+From these representations, such insights as to which categories are typically associated with a specific outcome can be more readily identified which are informative for prioritisation efforts.
 
 # REFERENCES {.unnumbered}
-
 
 ::: {#refs}
 :::
@@ -791,7 +821,6 @@ From these representations, such insights as to which categories are typically a
 
 ## Supplementary Figures {.unnumbered}
 
-
 ::: {#fig-pyridine-clust layout-ncol="2"}
 ![Cluster 1](img_cluster_1.png){#fig-pc1 width="50%"}
 
@@ -801,7 +830,6 @@ Members of the ('Pyridines and derivatives', 1.0') terminal category that fall i
 :::
 
 {{< pagebreak >}}
-
 
 ```{python}
 #| label: fig-ames
@@ -820,7 +848,6 @@ g = sns.scatterplot(x="tsne_x", y="tsne_y", data=tsne_all_df[tsne_all_df['new_gr
 
 plt.legend( bbox_to_anchor=(1.15,0.75), loc=2, borderaxespad=0., fontsize='large');
 ```
-
 
 ```{python, fig.width="50%"}
 #| label: fig-ames2
