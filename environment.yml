@@ -1,0 +1,21 @@
+name: shiny_tsca
+channels:
+- conda-forge
+dependencies:
+- python=3.10
+- pip
+- pip:
+  - openpyxl
+  - rdkit
+  - pandas
+  - numpy
+  - jupyter
+  - scikit-learn==1.4.2
+  - shiny
+  - shinywidgets
+  - matplotlib
+  - seaborn
+  - dill
+  - plotly==5.24.1 
+  
+
