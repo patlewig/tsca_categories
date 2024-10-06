@@ -33,7 +33,7 @@ def mk_fp(df):
     MOLS = dict(zip(df['dtxsid'], df['smiles']))
     MOLS = {k:Chem.MolFromSmiles(v) for k,v in MOLS.items()}
     MOLS = {i:j for i,j in MOLS.items() if j}
-    FP0 = pd.DataFrame([np.array(AllChem.GetMorganFingerprintAsBitVect(i,3,1024)) for i in MOLS.values()])
+    FP0 = pd.DataFrame([np.array(AllChem.GetMorganFingerprintAsBitVect(i,3,2048)) for i in MOLS.values()])
     FP0.index = MOLS.keys()
     FP0.columns = ['mrgn_%d'%i for i in FP0.columns]
     return FP0
