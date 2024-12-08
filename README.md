@@ -1,7 +1,9 @@
 tsca_categories
 ==============================
 
-Categorising substances into structural categories to facilitate selection of chemicals for testing in NAMs.
+This repository supports the following manuscript by Patlewicz G, Williams AJ, Adams M, Shah I and Paul-Friedman K. A Cheminformatics workflow to select representative TSCA Chemicals for New Approach Methodology (NAM) Screening. *2024*. Chem. Res.Toxicol. **in press** doi.org/10.1021/acs.chemrestox.4c00367
+
+Interim data files are available at Zenodo at 10.5281/zenodo.14318395
 
 Project Organization
 ------------
